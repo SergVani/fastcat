@@ -24,6 +24,7 @@
       <a href="blog.html">📝 Блог</a>
       <div class="admin-nav-section">Сайт</div>
       <a href="../index.html" target="_blank">🌐 Открыть сайт</a>
+      <button class="admin-nav-logout" onclick="logout()">🚪 Выйти</button>
     </nav>
   </aside>
 
@@ -142,9 +143,11 @@
 
 <div id="toast" class="toast"></div>
 
+<script src="auth.js"></script>
 <script src="../js/data.js"></script>
 <script src="../js/main.js"></script>
 <script>
+  checkAuth();
   initAdminData();
   let deleteTarget = null;
   let programs = getAdminData('programs', []);

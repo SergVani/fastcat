@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход — Быстрая Кошка</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body { background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .login-card { background: #fff; border-radius: 16px; padding: 48px 40px; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0,.2); }
+    .login-logo { text-align: center; margin-bottom: 32px; }
+    .login-logo .logo-icon { font-size: 3rem; display: block; margin-bottom: 8px; }
+    .login-logo h1 { font-size: 1.4rem; color: var(--green-dark); margin: 0; }
+    .login-logo p { color: var(--gray-400); font-size: .9rem; margin: 4px 0 0; }
+    .login-error { background: #FEE2E2; color: #DC2626; padding: 10px 14px; border-radius: 8px; font-size: .875rem; margin-bottom: 16px; display: none; }
+    .login-btn { width: 100%; padding: 14px; font-size: 1rem; margin-top: 8px; }
+    .login-hint { text-align: center; margin-top: 20px; font-size: .8rem; color: var(--gray-400); }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="logo-icon">🐱</span>
+      <h1>Быстрая Кошка</h1>
+      <p>Панель управления</p>
+    </div>
+    <div id="authError" class="login-error"></div>
+    <form onsubmit="doLogin(event)">
+      <div class="form-group">
+        <label class="form-label">Логин</label>
+        <input type="text" id="authLogin" class="form-control" placeholder="admin" autocomplete="username" required autofocus>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Пароль</label>
+        <input type="password" id="authPassword" class="form-control" placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary login-btn">🔓 Войти</button>
+    </form>
+    <div class="login-hint">
+      <a href="../index.html" style="color:var(--green)">← Вернуться на сайт</a>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+</body>
+</html>
