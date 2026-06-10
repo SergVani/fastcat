@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Расписание тренировок — Клуб Быстрая Кошка</title>
+  <meta name="description" content="Расписание тренировок и программа дня в кемпах клуба Быстрая Кошка. Бег, лыжи, ОФП, вечерние программы.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .type-pill {
+      display: inline-block; padding: 3px 10px; border-radius: 50px;
+      font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .3px;
+    }
+    .type-fitness { background:#D1FAE5;color:#065F46; }
+    .type-meal { background:#FEF3C7;color:#92400E; }
+    .type-sport { background:#DBEAFE;color:#1E40AF; }
+    .type-creative { background:#FDF4FF;color:#7E22CE; }
+    .type-game { background:#FFE4E6;color:#9F1239; }
+    .type-free { background:#F1F5F9;color:#475569; }
+    .type-evening { background:#EFF6FF;color:#1E3A8A; }
+    .day-tab {
+      padding: 10px 20px; border-radius: 50px; cursor: pointer;
+      font-weight: 600; font-size: .9rem; transition: all .2s;
+      border: 2px solid var(--gray-200); background: var(--white); color: var(--gray-600);
+    }
+    .day-tab.active { background: var(--green); color: var(--white); border-color: var(--green); }
+    .day-tab:hover:not(.active) { border-color: var(--green-light); color: var(--green); }
+    .prog-row { display:flex;align-items:flex-start;gap:20px;padding:16px 0;border-bottom:1px solid var(--gray-100); }
+    .prog-row:last-child { border-bottom:none; }
+    .prog-time { min-width:60px;font-weight:700;font-size:1rem;color:var(--gray-800);line-height:1.4; }
+    .prog-dot { width:12px;height:12px;border-radius:50%;background:var(--green-light);flex-shrink:0;margin-top:5px; }
+    .prog-line { width:1px;height:calc(100% + 16px);background:var(--gray-200);position:absolute;left:5px;top:5px; }
+    .prog-icon { font-size:1.4rem;flex-shrink:0; }
+    .prog-info h5 { color:var(--gray-800);font-size:1rem;margin-bottom:4px; }
+    .week-grid { display:grid;grid-template-columns:auto 1fr 1fr 1fr 1fr 1fr 1fr 1fr;gap:1px;background:var(--gray-200);border-radius:var(--radius);overflow:hidden; }
+    .week-cell { background:var(--white);padding:12px 14px;font-size:.85rem; }
+    .week-header { background:var(--green-dark);color:var(--white);font-weight:700;text-align:center;padding:12px 8px; }
+    .week-time { background:var(--gray-50);font-weight:600;color:var(--gray-600);white-space:nowrap; }
+    .week-event { background:var(--green-pale);color:var(--green-dark);text-align:center;font-size:.75rem;border-radius:6px;margin:2px;padding:4px 6px; }
+    .week-event.sport { background:#DBEAFE;color:#1E40AF; }
+    .week-event.meal { background:#FEF3C7;color:#92400E; }
+    .week-event.free { background:#F1F5F9;color:#475569; }
+    .week-event.evening { background:#EFF6FF;color:#1E3A8A; }
+  </style>
+</head>
+<body>
+
+<div id="headerMount"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb" style="justify-content:center">
+      <a href="index.html">Главная</a>
+      <span>/</span>
+      <span class="current">Расписание</span>
+    </div>
+    <h1>Расписание <span style="color:var(--amber)">тренировок</span></h1>
+    <p>Каждый день кемпа расписан так, чтобы максимально насытить вас энергией и впечатлениями</p>
+  </div>
+</section>
+
+<!-- DAY SCHEDULE -->
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Программа дня</h2>
+      <p>Типовое расписание для всех кемпов (адаптируется под сезон и локацию)</p>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;justify-content:center">
+      <button class="day-tab active" data-day="typical">Типовой день</button>
+      <button class="day-tab" data-day="summer">☀️ Летний кемп</button>
+      <button class="day-tab" data-day="winter">❄️ Зимний кемп</button>
+      <button class="day-tab" data-day="travel">✈️ Выездной кемп</button>
+    </div>
+
+    <div style="max-width:700px;margin:0 auto">
+      <!-- Typical day -->
+      <div id="day-typical" class="day-content">
+        <div style="background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:32px" id="scheduleList"></div>
+      </div>
+
+      <!-- Summer -->
+      <div id="day-summer" class="day-content hidden">
+        <div style="background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:32px">
+          <div class="prog-row"><div class="prog-time">06:30</div><div class="prog-icon">🌅</div><div class="prog-info"><h5>Рассвет-пробежка</h5><span class="type-pill type-sport">Спорт</span><p style="font-size:.85rem;color:var(--gray-600);margin-top:4px">Ранняя пробежка 5–10 км в прохладное время суток</p></div></div>
+          <div class="prog-row"><div class="prog-time">08:00</div><div class="prog-icon">🍳</div><div class="prog-info"><h5>Завтрак</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">09:30</div><div class="prog-icon">🏊</div><div class="prog-info"><h5>Плавание / водные активности</h5><span class="type-pill type-sport">Спорт</span><p style="font-size:.85rem;color:var(--gray-600);margin-top:4px">Открытая вода или бассейн, водные игры</p></div></div>
+          <div class="prog-row"><div class="prog-time">11:30</div><div class="prog-icon">🧘</div><div class="prog-info"><h5>Йога и растяжка</h5><span class="type-pill type-fitness">Восстановление</span></div></div>
+          <div class="prog-row"><div class="prog-time">13:00</div><div class="prog-icon">🥗</div><div class="prog-info"><h5>Обед</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">14:30</div><div class="prog-icon">🎨</div><div class="prog-info"><h5>Творческий мастер-класс</h5><span class="type-pill type-creative">Творчество</span></div></div>
+          <div class="prog-row"><div class="prog-time">16:30</div><div class="prog-icon">🏋️</div><div class="prog-info"><h5>Вечерняя ОФП-тренировка</h5><span class="type-pill type-sport">Спорт</span></div></div>
+          <div class="prog-row"><div class="prog-time">18:30</div><div class="prog-icon">🍽️</div><div class="prog-info"><h5>Ужин</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">20:00</div><div class="prog-icon">🌟</div><div class="prog-info"><h5>Вечерняя программа / Костёр</h5><span class="type-pill type-evening">Вечер</span></div></div>
+        </div>
+      </div>
+
+      <!-- Winter -->
+      <div id="day-winter" class="day-content hidden">
+        <div style="background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:32px">
+          <div class="prog-row"><div class="prog-time">08:00</div><div class="prog-icon">☀️</div><div class="prog-info"><h5>Подъём и зарядка</h5><span class="type-pill type-fitness">Фитнес</span></div></div>
+          <div class="prog-row"><div class="prog-time">08:30</div><div class="prog-icon">🍳</div><div class="prog-info"><h5>Завтрак</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">09:30</div><div class="prog-icon">⛷️</div><div class="prog-info"><h5>Лыжная тренировка — утренняя</h5><span class="type-pill type-sport">Спорт</span><p style="font-size:.85rem;color:var(--gray-600);margin-top:4px">Классика или коньковый ход, 10–15 км в зависимости от уровня</p></div></div>
+          <div class="prog-row"><div class="prog-time">12:00</div><div class="prog-icon">☕</div><div class="prog-info"><h5>Горячие напитки / Передышка</h5><span class="type-pill type-free">Отдых</span></div></div>
+          <div class="prog-row"><div class="prog-time">13:00</div><div class="prog-icon">🥘</div><div class="prog-info"><h5>Обед</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">14:30</div><div class="prog-icon">🏋️</div><div class="prog-info"><h5>ОФП в зале</h5><span class="type-pill type-sport">Спорт</span></div></div>
+          <div class="prog-row"><div class="prog-time">16:00</div><div class="prog-icon">♨️</div><div class="prog-info"><h5>Сауна / Хамам / Бассейн</h5><span class="type-pill type-free">СПА</span></div></div>
+          <div class="prog-row"><div class="prog-time">18:30</div><div class="prog-icon">🍽️</div><div class="prog-info"><h5>Ужин</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">20:00</div><div class="prog-icon">🧠</div><div class="prog-info"><h5>Интеллектуальная игра / Квиз</h5><span class="type-pill type-evening">Вечер</span></div></div>
+        </div>
+      </div>
+
+      <!-- Travel -->
+      <div id="day-travel" class="day-content hidden">
+        <div style="background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:32px">
+          <div class="prog-row"><div class="prog-time">07:00</div><div class="prog-icon">🌅</div><div class="prog-info"><h5>Утренняя пробежка / трейл</h5><span class="type-pill type-sport">Спорт</span></div></div>
+          <div class="prog-row"><div class="prog-time">08:30</div><div class="prog-icon">🥐</div><div class="prog-info"><h5>Завтрак</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">10:00</div><div class="prog-icon">🚴</div><div class="prog-info"><h5>Велопрогулка / Экскурсия</h5><span class="type-pill type-sport">Активность</span><p style="font-size:.85rem;color:var(--gray-600);margin-top:4px">Знакомство с местом, культурная программа</p></div></div>
+          <div class="prog-row"><div class="prog-time">13:00</div><div class="prog-icon">🍝</div><div class="prog-info"><h5>Обед в местном ресторане</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">15:00</div><div class="prog-icon">🏋️</div><div class="prog-info"><h5>Тренировка на открытом воздухе</h5><span class="type-pill type-sport">Спорт</span></div></div>
+          <div class="prog-row"><div class="prog-time">17:00</div><div class="prog-icon">🌊</div><div class="prog-info"><h5>Купание / Свободное время</h5><span class="type-pill type-free">Свобода</span></div></div>
+          <div class="prog-row"><div class="prog-time">19:30</div><div class="prog-icon">🍷</div><div class="prog-info"><h5>Ужин</h5><span class="type-pill type-meal">Питание</span></div></div>
+          <div class="prog-row"><div class="prog-time">21:00</div><div class="prog-icon">🌟</div><div class="prog-info"><h5>Вечерняя прогулка / Общение</h5><span class="type-pill type-evening">Вечер</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK OVERVIEW -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-title">
+      <h2>Недельная программа кемпа</h2>
+      <p>Как выглядит неделя в нашем лагере</p>
+    </div>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;min-width:700px">
+        <thead>
+          <tr>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:left;min-width:80px">Время</th>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:center">Пн</th>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:center">Вт</th>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:center">Ср</th>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:center">Чт</th>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:center">Пт</th>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:center">Сб</th>
+            <th style="background:var(--green-dark);color:var(--white);padding:12px 14px;text-align:center">Вс</th>
+          </tr>
+        </thead>
+        <tbody id="weekTable"></tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:10px">
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem"><span style="width:12px;height:12px;border-radius:3px;background:#DBEAFE;display:inline-block"></span>Спорт</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem"><span style="width:12px;height:12px;border-radius:3px;background:#FEF3C7;display:inline-block"></span>Питание</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem"><span style="width:12px;height:12px;border-radius:3px;background:#D1FAE5;display:inline-block"></span>Восстановление</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem"><span style="width:12px;height:12px;border-radius:3px;background:#FDF4FF;display:inline-block"></span>Творчество</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem"><span style="width:12px;height:12px;border-radius:3px;background:#F1F5F9;display:inline-block"></span>Свободное время</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem"><span style="width:12px;height:12px;border-radius:3px;background:#EFF6FF;display:inline-block"></span>Вечерняя программа</span>
+    </div>
+  </div>
+</section>
+
+<!-- LEVELS -->
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Расписание по уровням подготовки</h2>
+      <p>Для каждого уровня — своя нагрузка и объём тренировок</p>
+    </div>
+    <div class="grid-3">
+      <div style="background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden">
+        <div style="background:#EFF6FF;padding:24px;text-align:center">
+          <span class="level-badge level-beginner" style="font-size:1rem;padding:8px 20px">Начальный уровень</span>
+          <p style="color:#0369A1;font-size:.85rem;margin-top:8px">Для тех, кто только начинает</p>
+        </div>
+        <div style="padding:24px">
+          <table style="width:100%;font-size:.85rem;border-collapse:collapse">
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">🏃 Бег</td><td style="text-align:right;font-weight:600">3–5 км/день</td></tr>
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">🏋️ ОФП</td><td style="text-align:right;font-weight:600">45 мин/день</td></tr>
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">⛷️ Лыжи</td><td style="text-align:right;font-weight:600">5–8 км/день</td></tr>
+            <tr><td style="padding:6px 0;color:var(--gray-600)">🧘 Растяжка</td><td style="text-align:right;font-weight:600">30 мин/день</td></tr>
+          </table>
+        </div>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;border:2px solid var(--green-light)">
+        <div style="background:var(--green-pale);padding:24px;text-align:center">
+          <span class="level-badge level-middle" style="font-size:1rem;padding:8px 20px">Средний уровень</span>
+          <p style="color:var(--green);font-size:.85rem;margin-top:8px">Для активных и регулярно тренирующихся</p>
+        </div>
+        <div style="padding:24px">
+          <table style="width:100%;font-size:.85rem;border-collapse:collapse">
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">🏃 Бег</td><td style="text-align:right;font-weight:600">8–12 км/день</td></tr>
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">🏋️ ОФП</td><td style="text-align:right;font-weight:600">60 мин/день</td></tr>
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">⛷️ Лыжи</td><td style="text-align:right;font-weight:600">15–20 км/день</td></tr>
+            <tr><td style="padding:6px 0;color:var(--gray-600)">🧘 Растяжка</td><td style="text-align:right;font-weight:600">30 мин/день</td></tr>
+          </table>
+        </div>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden">
+        <div style="background:#FEF3C7;padding:24px;text-align:center">
+          <span class="level-badge level-pro" style="font-size:1rem;padding:8px 20px">Уровень Про</span>
+          <p style="color:#92400E;font-size:.85rem;margin-top:8px">Для опытных спортсменов</p>
+        </div>
+        <div style="padding:24px">
+          <table style="width:100%;font-size:.85rem;border-collapse:collapse">
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">🏃 Бег</td><td style="text-align:right;font-weight:600">15–20+ км/день</td></tr>
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">🏋️ ОФП</td><td style="text-align:right;font-weight:600">90 мин/день</td></tr>
+            <tr><td style="padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)">⛷️ Лыжи</td><td style="text-align:right;font-weight:600">25–30+ км/день</td></tr>
+            <tr><td style="padding:6px 0;color:var(--gray-600)">🧘 Растяжка</td><td style="text-align:right;font-weight:600">40 мин/день</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Хотите узнать своё расписание?</h2>
+    <p>Запишитесь на кемп и получите персональный план тренировок</p>
+    <div class="cta-btns">
+      <a href="contacts.html#register" class="btn btn-primary btn-lg">Записаться</a>
+      <a href="camps.html" class="btn btn-white btn-lg">Все кемпы</a>
+    </div>
+  </div>
+</section>
+
+<div id="footerMount"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('headerMount').innerHTML = renderHeader('schedule.html');
+  document.getElementById('footerMount').innerHTML = renderFooter();
+
+  // Render schedule list
+  const sl = document.getElementById('scheduleList');
+  const typeMap = {fitness:'fitness',meal:'meal',sport:'sport',creative:'creative',game:'game',free:'free',evening:'evening'};
+  SITE_DATA.schedule.forEach(s => {
+    sl.innerHTML += `
+    <div class="prog-row">
+      <div class="prog-time">${s.time}</div>
+      <div class="prog-icon">${s.icon}</div>
+      <div class="prog-info">
+        <h5>${s.activity}</h5>
+        <span class="type-pill type-${typeMap[s.type]||'free'}">${s.type}</span>
+      </div>
+    </div>`;
+  });
+
+  // Day tabs
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.day-content').forEach(d => d.classList.add('hidden'));
+      tab.classList.add('active');
+      document.getElementById('day-' + tab.dataset.day).classList.remove('hidden');
+    });
+  });
+
+  // Week table
+  const weekRows = [
+    { time:'07:30', cells:['🌅 Зарядка','🌅 Зарядка','🌅 Зарядка','🌅 Зарядка','🌅 Зарядка','🌅 Зарядка','😴 Отдых'], types:['fitness','fitness','fitness','fitness','fitness','fitness','free'] },
+    { time:'08:00', cells:['🍳 Завтрак','🍳 Завтрак','🍳 Завтрак','🍳 Завтрак','🍳 Завтрак','🍳 Завтрак','🍳 Завтрак'], types:['meal','meal','meal','meal','meal','meal','meal'] },
+    { time:'09:00', cells:['🏃 Бег','⛷️ Лыжи','🏃 Бег','🏋️ ОФП','🏃 Бег','🚴 Экскурсия','🏊 Бассейн'], types:['sport','sport','sport','sport','sport','sport','free'] },
+    { time:'11:00', cells:['🧘 Растяжка','🧘 Растяжка','🧘 Растяжка','🧘 Растяжка','🧘 Растяжка','🧘 Растяжка','🧘 Растяжка'], types:['fitness','fitness','fitness','fitness','fitness','fitness','fitness'] },
+    { time:'12:00', cells:['🥗 Обед','🥗 Обед','🥗 Обед','🥗 Обед','🥗 Обед','🥗 Обед','🥗 Обед'], types:['meal','meal','meal','meal','meal','meal','meal'] },
+    { time:'13:30', cells:['🏊 СПА','🎨 Мастер','🏊 СПА','🎨 Творчество','🏊 СПА','🌴 Свободно','🌴 Свободно'], types:['free','creative','free','creative','free','free','free'] },
+    { time:'15:00', cells:['🎨 Мастер','⚽ Игры','🏃 Бег ×2','🏋️ ОФП','⚽ Игры','🏃 Марафончик','🏋️ ОФП'], types:['creative','game','sport','sport','game','sport','sport'] },
+    { time:'18:30', cells:['🍽️ Ужин','🍽️ Ужин','🍽️ Ужин','🍽️ Ужин','🍽️ Ужин','🍽️ Ужин','🍽️ Ужин'], types:['meal','meal','meal','meal','meal','meal','meal'] },
+    { time:'20:00', cells:['🧠 Квиз','🎬 Кино','💬 Дискуссия','🎲 Игры','🎤 Вечер','🎉 Вечеринка','🌙 Свободно'], types:['evening','evening','evening','evening','evening','evening','free'] },
+  ];
+  const wt = document.getElementById('weekTable');
+  const bgMap = {sport:'#DBEAFE',meal:'#FEF3C7',fitness:'#D1FAE5',creative:'#FDF4FF',game:'#FFE4E6',free:'#F1F5F9',evening:'#EFF6FF'};
+  weekRows.forEach(row => {
+    const cells = row.cells.map((c,i) => `<td style="background:${bgMap[row.types[i]]||'#fff'};padding:8px 6px;text-align:center;font-size:.78rem;border:1px solid #E5E7EB">${c}</td>`).join('');
+    wt.innerHTML += `<tr><td style="padding:8px 14px;font-weight:600;font-size:.85rem;background:var(--gray-50);border:1px solid #E5E7EB;white-space:nowrap">${row.time}</td>${cells}</tr>`;
+  });
+</script>
+</body>
+</html>

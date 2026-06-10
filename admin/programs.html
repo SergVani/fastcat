@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управление программами — Быстрая Кошка</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background:#F1F5F9">
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar-logo">
+      <div class="logo-icon">🐱</div>
+      <div class="logo-text">Быстрая Кошка <small>Панель управления</small></div>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-section">Главное</div>
+      <a href="index.html">📊 Дашборд</a>
+      <a href="registrations.html">📋 Заявки</a>
+      <div class="admin-nav-section">Контент</div>
+      <a href="programs.html" class="active">🏕️ Программы</a>
+      <a href="schedule.html">📅 Расписание</a>
+      <a href="blog.html">📝 Блог</a>
+      <div class="admin-nav-section">Сайт</div>
+      <a href="../index.html" target="_blank">🌐 Открыть сайт</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>🏕️ Управление программами</h1>
+      <button class="btn btn-primary btn-sm" onclick="openAddModal()">+ Добавить кемп</button>
+    </div>
+
+    <div class="admin-content">
+      <!-- PROGRAMS TABLE -->
+      <div class="admin-table-container">
+        <div class="admin-table-header">
+          <h3>Все кемпы и программы</h3>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="searchInput" class="form-control" style="width:220px;padding:8px 12px" placeholder="Поиск..." oninput="filterPrograms()">
+            <select id="seasonFilter" class="form-control" style="width:130px;padding:8px 12px" onchange="filterPrograms()">
+              <option value="">Все сезоны</option>
+              <option value="summer">☀️ Лето</option>
+              <option value="autumn">🍂 Осень</option>
+              <option value="winter">❄️ Зима</option>
+            </select>
+          </div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Сезон</th>
+                <th>Даты</th>
+                <th>Длительность</th>
+                <th>Мест (своб/всего)</th>
+                <th>Заполненность</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="programsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ADD/EDIT MODAL -->
+<div class="modal-overlay" id="programModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Добавить кемп</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="programForm">
+        <input type="hidden" id="editId">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Название кемпа *</label>
+            <input type="text" id="pName" class="form-control" placeholder="Летние спортивные каникулы" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Иконка (emoji)</label>
+            <input type="text" id="pIcon" class="form-control" placeholder="☀️" maxlength="4">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Сезон *</label>
+            <select id="pSeason" class="form-control" required>
+              <option value="">— Выберите —</option>
+              <option value="summer">☀️ Лето</option>
+              <option value="autumn">🍂 Осень</option>
+              <option value="winter">❄️ Зима</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Длительность</label>
+            <input type="text" id="pDuration" class="form-control" placeholder="8 дней">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Даты *</label>
+          <input type="text" id="pDates" class="form-control" placeholder="30 июля — 7 августа" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Всего мест</label>
+            <input type="number" id="pSpots" class="form-control" placeholder="20" min="1" max="100">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Свободных мест</label>
+            <input type="number" id="pSpotsLeft" class="form-control" placeholder="20" min="0" max="100">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal()">Отмена</button>
+      <button class="btn btn-primary" onclick="saveProgram()">💾 Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-header"><h3>Удалить кемп?</h3><button class="modal-close" onclick="closeDeleteModal()">✕</button></div>
+    <div class="modal-body"><p>Это действие нельзя отменить. Все данные о программе будут удалены.</p></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeDeleteModal()">Отмена</button>
+      <button class="btn" style="background:#DC2626;color:#fff" onclick="confirmDelete()">🗑️ Удалить</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  initAdminData();
+  let deleteTarget = null;
+  let programs = getAdminData('programs', []);
+
+  const seasonLabel = { summer:'☀️ Лето', autumn:'🍂 Осень', winter:'❄️ Зима' };
+  const seasonBg = { summer:'var(--green-pale)', autumn:'#FFE4E6', winter:'#DBEAFE' };
+  const seasonColor = { summer:'var(--green)', autumn:'#9F1239', winter:'#1E40AF' };
+
+  function renderTable(data) {
+    const tbody = document.getElementById('programsTable');
+    tbody.innerHTML = '';
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--gray-400)">Нет программ</td></tr>';
+      return;
+    }
+    data.forEach(p => {
+      const pct = Math.round(((p.spots||20) - (p.spotsLeft||0)) / (p.spots||20) * 100);
+      const barColor = pct>=80?'#DC2626':pct>=60?'#F59E0B':'#10B981';
+      tbody.innerHTML += `
+      <tr>
+        <td style="color:var(--gray-400)">#${p.id}</td>
+        <td><strong>${p.icon||''} ${p.name}</strong></td>
+        <td><span class="badge" style="background:${seasonBg[p.season]};color:${seasonColor[p.season]}">${seasonLabel[p.season]||p.season}</span></td>
+        <td>${p.dates}</td>
+        <td>${p.duration||'—'}</td>
+        <td><strong>${p.spotsLeft||0}</strong> / ${p.spots||0}</td>
+        <td style="min-width:100px">
+          <div style="height:6px;background:var(--gray-100);border-radius:50px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${barColor};border-radius:50px"></div>
+          </div>
+          <span style="font-size:.75rem;color:var(--gray-400)">${pct}%</span>
+        </td>
+        <td>
+          <div class="action-btns">
+            <button class="btn-icon btn-icon-edit" onclick="editProgram(${p.id})" title="Редактировать">✏️</button>
+            <button class="btn-icon btn-icon-delete" onclick="openDeleteModal(${p.id})" title="Удалить">🗑️</button>
+          </div>
+        </td>
+      </tr>`;
+    });
+  }
+
+  function filterPrograms() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const s = document.getElementById('seasonFilter').value;
+    const filtered = programs.filter(p => {
+      const matchQ = !q || p.name.toLowerCase().includes(q) || p.dates.toLowerCase().includes(q);
+      const matchS = !s || p.season === s;
+      return matchQ && matchS;
+    });
+    renderTable(filtered);
+  }
+
+  renderTable(programs);
+
+  function openAddModal() {
+    document.getElementById('modalTitle').textContent = 'Добавить кемп';
+    document.getElementById('editId').value = '';
+    document.getElementById('programForm').reset();
+    document.getElementById('programModal').classList.add('open');
+  }
+
+  function editProgram(id) {
+    const p = programs.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('modalTitle').textContent = 'Редактировать кемп';
+    document.getElementById('editId').value = id;
+    document.getElementById('pName').value = p.name;
+    document.getElementById('pIcon').value = p.icon || '';
+    document.getElementById('pSeason').value = p.season;
+    document.getElementById('pDuration').value = p.duration || '';
+    document.getElementById('pDates').value = p.dates;
+    document.getElementById('pSpots').value = p.spots || 20;
+    document.getElementById('pSpotsLeft').value = p.spotsLeft || 0;
+    document.getElementById('programModal').classList.add('open');
+  }
+
+  function saveProgram() {
+    const id = document.getElementById('editId').value;
+    const data = {
+      id: id ? parseInt(id) : Date.now(),
+      name: document.getElementById('pName').value.trim(),
+      icon: document.getElementById('pIcon').value.trim() || '🏕️',
+      season: document.getElementById('pSeason').value,
+      duration: document.getElementById('pDuration').value.trim(),
+      dates: document.getElementById('pDates').value.trim(),
+      spots: parseInt(document.getElementById('pSpots').value) || 20,
+      spotsLeft: parseInt(document.getElementById('pSpotsLeft').value) || 0
+    };
+    if (!data.name || !data.season || !data.dates) {
+      showToast('Заполните обязательные поля', 'error'); return;
+    }
+    if (id) {
+      const idx = programs.findIndex(p => p.id === parseInt(id));
+      if (idx >= 0) programs[idx] = data;
+    } else {
+      programs.push(data);
+    }
+    setAdminData('programs', programs);
+    renderTable(programs);
+    closeModal();
+    showToast('✅ Программа сохранена');
+  }
+
+  function openDeleteModal(id) { deleteTarget = id; document.getElementById('deleteModal').classList.add('open'); }
+  function closeDeleteModal() { deleteTarget = null; document.getElementById('deleteModal').classList.remove('open'); }
+  function confirmDelete() {
+    programs = programs.filter(p => p.id !== deleteTarget);
+    setAdminData('programs', programs);
+    renderTable(programs);
+    closeDeleteModal();
+    showToast('🗑️ Программа удалена');
+  }
+  function closeModal() { document.getElementById('programModal').classList.remove('open'); }
+</script>
+</body>
+</html>

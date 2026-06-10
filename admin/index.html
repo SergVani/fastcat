@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель — Быстрая Кошка</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background:#F1F5F9">
+
+<div class="admin-layout">
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar-logo">
+      <div class="logo-icon">🐱</div>
+      <div class="logo-text">Быстрая Кошка <small>Панель управления</small></div>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-section">Главное</div>
+      <a href="index.html" class="active">📊 Дашборд</a>
+      <a href="registrations.html">📋 Заявки</a>
+      <div class="admin-nav-section">Контент</div>
+      <a href="programs.html">🏕️ Программы</a>
+      <a href="schedule.html">📅 Расписание</a>
+      <a href="blog.html">📝 Блог</a>
+      <div class="admin-nav-section">Сайт</div>
+      <a href="../index.html" target="_blank">🌐 Открыть сайт</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+    <!-- TOPBAR -->
+    <div class="admin-topbar">
+      <h1>📊 Дашборд</h1>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:.85rem;color:var(--gray-400)" id="currentDate"></span>
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:1.2rem">🐱</div>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <!-- STATS -->
+      <div class="admin-stat-grid">
+        <div class="admin-stat-card">
+          <div class="label">Всего заявок</div>
+          <div class="value" id="statTotal">—</div>
+          <div class="change" id="statPending">— ожидают</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="label">Программ</div>
+          <div class="value" id="statPrograms">—</div>
+          <div class="change">активных кемпов</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="label">Статей в блоге</div>
+          <div class="value" id="statBlog">—</div>
+          <div class="change">опубликовано</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="label">В расписании</div>
+          <div class="value" id="statSchedule">—</div>
+          <div class="change">пунктов дня</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="gap:24px;align-items:start">
+        <!-- RECENT REGISTRATIONS -->
+        <div class="admin-table-container">
+          <div class="admin-table-header">
+            <h3>Последние заявки</h3>
+            <a href="registrations.html" class="btn btn-outline btn-sm">Все заявки</a>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>Имя</th><th>Кемп</th><th>Статус</th></tr></thead>
+            <tbody id="recentRegs"></tbody>
+          </table>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="admin-form-card">
+            <h3>⚡ Быстрые действия</h3>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <a href="programs.html" class="btn btn-green w-100" style="justify-content:center">➕ Добавить программу</a>
+              <a href="schedule.html" class="btn btn-outline w-100" style="justify-content:center">📅 Изменить расписание</a>
+              <a href="blog.html" class="btn btn-outline w-100" style="justify-content:center">✍️ Написать статью</a>
+              <a href="registrations.html" class="btn btn-outline w-100" style="justify-content:center">📋 Просмотр заявок</a>
+            </div>
+          </div>
+
+          <!-- UPCOMING CAMPS -->
+          <div class="admin-form-card">
+            <h3>📅 Ближайшие кемпы</h3>
+            <div id="upcomingCamps" style="display:flex;flex-direction:column;gap:10px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REGISTRATIONS BY CAMP -->
+      <div class="admin-table-container mt-6">
+        <div class="admin-table-header">
+          <h3>Заполненность кемпов</h3>
+        </div>
+        <div style="padding:20px" id="campsFill"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/data.js"></script>
+<script>
+  initAdminData();
+
+  // Date
+  document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'});
+
+  // Stats
+  const regs = getAdminData('registrations', []);
+  const progs = getAdminData('programs', []);
+  const blog = getAdminData('blog', []);
+  const sched = getAdminData('schedule', []);
+
+  document.getElementById('statTotal').textContent = regs.length;
+  document.getElementById('statPending').textContent = regs.filter(r=>r.status==='pending').length + ' ожидают';
+  document.getElementById('statPrograms').textContent = progs.length;
+  document.getElementById('statBlog').textContent = blog.filter(b=>b.published!==false).length;
+  document.getElementById('statSchedule').textContent = sched.length;
+
+  // Recent regs
+  const rr = document.getElementById('recentRegs');
+  const statusLabel = { confirmed:'<span class="badge badge-green">Подтверждена</span>', pending:'<span class="badge badge-amber">Ожидает</span>', cancelled:'<span class="badge" style="background:#FEE2E2;color:#DC2626">Отменена</span>' };
+  regs.slice(-5).reverse().forEach(r => {
+    rr.innerHTML += `<tr>
+      <td><strong>${r.name}</strong><br><span style="font-size:.8rem;color:var(--gray-400)">${r.phone||''}</span></td>
+      <td style="font-size:.85rem">${(r.camp||'').slice(0,30)}...</td>
+      <td>${statusLabel[r.status]||''}</td>
+    </tr>`;
+  });
+
+  // Upcoming camps
+  const uc = document.getElementById('upcomingCamps');
+  SITE_DATA.camps.slice(0,3).forEach(c => {
+    uc.innerHTML += `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gray-100)">
+      <div>
+        <div style="font-weight:600;font-size:.9rem">${c.icon} ${c.name}</div>
+        <div style="font-size:.8rem;color:var(--gray-400)">${c.dates}</div>
+      </div>
+      <span class="badge ${c.spotsLeft<=5?'badge-amber':'badge-green'}">${c.spotsLeft} мест</span>
+    </div>`;
+  });
+
+  // Fill bars
+  const cf = document.getElementById('campsFill');
+  SITE_DATA.camps.forEach(c => {
+    const pct = Math.round((c.spots - c.spotsLeft) / c.spots * 100);
+    const color = pct >= 80 ? '#DC2626' : pct >= 60 ? '#F59E0B' : '#10B981';
+    cf.innerHTML += `
+    <div style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:.9rem">
+        <span>${c.icon} ${c.name} — ${c.dates}</span>
+        <span style="font-weight:700">${pct}% <span style="color:var(--gray-400);font-weight:400">(${c.spots-c.spotsLeft}/${c.spots})</span></span>
+      </div>
+      <div style="height:8px;background:var(--gray-100);border-radius:50px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${color};border-radius:50px;transition:width .5s ease"></div>
+      </div>
+    </div>`;
+  });
+</script>
+</body>
+</html>

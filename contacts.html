@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты и запись — Клуб Быстрая Кошка</title>
+  <meta name="description" content="Свяжитесь с клубом Быстрая Кошка. Запись в кемп через форму, Telegram, WhatsApp или по телефону.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="headerMount"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb" style="justify-content:center">
+      <a href="index.html">Главная</a>
+      <span>/</span>
+      <span class="current">Контакты</span>
+    </div>
+    <h1>Свяжитесь с <span style="color:var(--amber)">нами</span></h1>
+    <p>Готовы ответить на все вопросы и помочь с выбором кемпа</p>
+  </div>
+</section>
+
+<!-- CONTACT METHODS -->
+<section class="section">
+  <div class="container">
+    <div class="grid-4">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <h4>Телефон</h4>
+        <p>Позвоните нам — ответим с 9:00 до 21:00</p>
+        <a href="tel:+79912287826">+7 991 228-78-26</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✈️</div>
+        <h4>Telegram</h4>
+        <p>Напишите в Telegram — отвечаем быстро!</p>
+        <a href="https://t.me/Svetlana_Melnikova1985" target="_blank">@Svetlana_Melnikova1985</a>
+        <a href="https://t.me/Svetlana_Melnikova1985" target="_blank" class="btn btn-green btn-sm mt-3" style="display:inline-flex">Написать в TG</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <p>Удобно писать в мессенджере? Мы здесь!</p>
+        <a href="https://wa.me/79912287826" target="_blank">+7 991 228-78-26</a>
+        <a href="https://wa.me/79912287826" target="_blank" class="btn btn-green btn-sm mt-3" style="display:inline-flex">Написать в WA</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h4>Наш отель</h4>
+        <p>Спа-отель Теплеево Резорт</p>
+        <span style="color:var(--green);font-weight:600">Московская область</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section class="section bg-light" id="register">
+  <div class="container">
+    <div style="max-width:700px;margin:0 auto">
+      <div class="section-title" style="margin-bottom:36px">
+        <h2>Запись в кемп</h2>
+        <p>Заполните форму и мы свяжемся с вами в течение 24 часов</p>
+      </div>
+      <div class="form-box">
+        <form id="regForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Ваше имя *</label>
+              <input type="text" name="name" class="form-control" placeholder="Иван Иванов" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Телефон *</label>
+              <input type="tel" name="phone" class="form-control" placeholder="+7 900 000 00 00" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Возраст</label>
+              <input type="number" name="age" class="form-control" placeholder="30" min="18" max="80">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Выберите кемп *</label>
+            <select name="camp" class="form-control" required>
+              <option value="">— Выберите программу —</option>
+              <optgroup label="☀️ Лето">
+                <option>Летние каникулы — 30 июля — 7 августа</option>
+                <option>Летние каникулы — 15 августа — 22 августа</option>
+              </optgroup>
+              <optgroup label="🍂 Осень">
+                <option>Осенние каникулы — 7-14 ноября</option>
+              </optgroup>
+              <optgroup label="❄️ Зима">
+                <option>Зимние каникулы — 1-10 декабря</option>
+                <option>Новогодние каникулы — 3-13 января</option>
+                <option>Зимние каникулы — 1-10 февраля</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Уровень подготовки</label>
+              <select name="level" class="form-control">
+                <option value="">— Выберите уровень —</option>
+                <option>Начальный (новичок)</option>
+                <option>Средний (занимаюсь периодически)</option>
+                <option>Продвинутый</option>
+                <option>Про (спортивный опыт)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Тип размещения</label>
+              <select name="room" class="form-control">
+                <option value="">— Выберите тип —</option>
+                <option>Двухместный номер</option>
+                <option>Одноместный номер</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Комментарий / вопрос</label>
+            <textarea name="comment" class="form-control" placeholder="Ваши пожелания, вопросы или особые условия..."></textarea>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px">
+            <input type="checkbox" id="agree" required style="width:18px;height:18px;margin-top:3px;cursor:pointer;accent-color:var(--green)">
+            <label for="agree" style="font-size:.9rem;color:var(--gray-600);cursor:pointer">Согласен(-на) на обработку персональных данных и получение информации о кемпах</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-100" style="justify-content:center">
+            Отправить заявку 🐱
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK LINKS -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center">
+      <h2>Или свяжитесь напрямую</h2>
+      <p style="max-width:500px;margin:12px auto 32px">Предпочитаете живое общение? Напишите нам прямо сейчас — мы отвечаем быстро!</p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+        <a href="https://t.me/Svetlana_Melnikova1985" target="_blank" class="btn btn-green btn-lg">
+          ✈️ Написать в Telegram
+        </a>
+        <a href="https://wa.me/79912287826" target="_blank" class="btn btn-outline btn-lg">
+          💬 Написать в WhatsApp
+        </a>
+        <a href="tel:+79912287826" class="btn btn-white btn-lg" style="box-shadow:var(--shadow)">
+          📞 Позвонить
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-light">
+  <div class="container">
+    <div style="max-width:700px;margin:0 auto">
+      <h2 style="text-align:center;margin-bottom:32px">Часто задают при записи</h2>
+      <div class="accordion-item">
+        <button class="accordion-btn">Когда с вами свяжутся после отправки формы? <span class="accordion-icon">▼</span></button>
+        <div class="accordion-body"><p>Обычно отвечаем в течение нескольких часов в рабочее время. В выходные — в течение суток. Для срочных вопросов лучше написать в Telegram.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn">Нужна ли предоплата для бронирования? <span class="accordion-icon">▼</span></button>
+        <div class="accordion-body"><p>Да, для подтверждения места необходима предоплата 50% от стоимости кемпа. Остаток оплачивается за 2 недели до заезда.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn">Есть ли медицинские противопоказания? <span class="accordion-icon">▼</span></button>
+        <div class="accordion-body"><p>При записи мы попросим указать хронические заболевания и уровень физической подготовки. Для участия в программах Про может потребоваться медицинская справка.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footerMount"></div>
+<div id="toast" class="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('headerMount').innerHTML = renderHeader('contacts.html');
+  document.getElementById('footerMount').innerHTML = renderFooter();
+
+  // Scroll to register form if hash
+  if (window.location.hash === '#register') {
+    setTimeout(() => {
+      document.getElementById('register').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управление расписанием — Быстрая Кошка</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background:#F1F5F9">
+
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-logo">
+      <div class="logo-icon">🐱</div>
+      <div class="logo-text">Быстрая Кошка <small>Панель управления</small></div>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-section">Главное</div>
+      <a href="index.html">📊 Дашборд</a>
+      <a href="registrations.html">📋 Заявки</a>
+      <div class="admin-nav-section">Контент</div>
+      <a href="programs.html">🏕️ Программы</a>
+      <a href="schedule.html" class="active">📅 Расписание</a>
+      <a href="blog.html">📝 Блог</a>
+      <div class="admin-nav-section">Сайт</div>
+      <a href="../index.html" target="_blank">🌐 Открыть сайт</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>📅 Управление расписанием</h1>
+      <button class="btn btn-primary btn-sm" onclick="openAddModal()">+ Добавить пункт</button>
+    </div>
+
+    <div class="admin-content">
+      <div class="admin-table-container">
+        <div class="admin-table-header">
+          <h3>Программа дня</h3>
+          <div style="display:flex;gap:8px">
+            <select id="typeFilter" class="form-control" style="width:160px;padding:8px 12px" onchange="renderSchedule()">
+              <option value="">Все типы</option>
+              <option value="fitness">Фитнес</option>
+              <option value="meal">Питание</option>
+              <option value="sport">Спорт</option>
+              <option value="creative">Творчество</option>
+              <option value="game">Игры</option>
+              <option value="free">Свободное время</option>
+              <option value="evening">Вечер</option>
+            </select>
+          </div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width:50px">⬆⬇</th>
+                <th>Время</th>
+                <th>Иконка</th>
+                <th>Активность</th>
+                <th>Тип</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="admin-form-card mt-6">
+        <h3>👁️ Предпросмотр расписания</h3>
+        <div id="schedulePreview" style="display:flex;flex-direction:column;gap:0;margin-top:16px"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="schedModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="schedModalTitle">Добавить пункт расписания</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="schedForm">
+        <input type="hidden" id="editId">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Время *</label>
+            <input type="text" id="sTime" class="form-control" placeholder="09:00" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Иконка (emoji)</label>
+            <input type="text" id="sIcon" class="form-control" placeholder="🏃" maxlength="4">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Название активности *</label>
+          <input type="text" id="sActivity" class="form-control" placeholder="Утренняя тренировка — бег" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Тип активности</label>
+          <select id="sType" class="form-control">
+            <option value="sport">🏃 Спорт</option>
+            <option value="fitness">🧘 Фитнес/Восстановление</option>
+            <option value="meal">🍽️ Питание</option>
+            <option value="creative">🎨 Творчество</option>
+            <option value="game">⚽ Игры</option>
+            <option value="free">🌴 Свободное время</option>
+            <option value="evening">🌙 Вечерняя программа</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal()">Отмена</button>
+      <button class="btn btn-primary" onclick="saveItem()">💾 Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-header"><h3>Удалить пункт?</h3><button class="modal-close" onclick="closeDeleteModal()">✕</button></div>
+    <div class="modal-body"><p>Пункт расписания будет удалён.</p></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeDeleteModal()">Отмена</button>
+      <button class="btn" style="background:#DC2626;color:#fff" onclick="confirmDelete()">🗑️ Удалить</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  initAdminData();
+  let schedule = getAdminData('schedule', []);
+  let deleteTarget = null;
+  let dragSrc = null;
+
+  const typeColors = {
+    fitness:'#D1FAE5', meal:'#FEF3C7', sport:'#DBEAFE',
+    creative:'#FDF4FF', game:'#FFE4E6', free:'#F1F5F9', evening:'#EFF6FF'
+  };
+  const typeTextColors = {
+    fitness:'#065F46', meal:'#92400E', sport:'#1E40AF',
+    creative:'#7E22CE', game:'#9F1239', free:'#475569', evening:'#1E3A8A'
+  };
+  const typeLabels = {
+    fitness:'Фитнес', meal:'Питание', sport:'Спорт',
+    creative:'Творчество', game:'Игры', free:'Свободное', evening:'Вечер'
+  };
+
+  function renderSchedule() {
+    const filter = document.getElementById('typeFilter').value;
+    const data = filter ? schedule.filter(s => s.type === filter) : schedule;
+    const tbody = document.getElementById('scheduleTable');
+    tbody.innerHTML = '';
+    data.forEach((s, idx) => {
+      const bg = typeColors[s.type] || '#F1F5F9';
+      const fg = typeTextColors[s.type] || '#475569';
+      tbody.innerHTML += `
+      <tr draggable="true" data-id="${s.id}" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="drop(event)">
+        <td style="cursor:grab;color:var(--gray-400);font-size:1.2rem">⠿</td>
+        <td><strong>${s.time}</strong></td>
+        <td style="font-size:1.4rem">${s.icon||''}</td>
+        <td>${s.activity}</td>
+        <td><span style="background:${bg};color:${fg};padding:3px 10px;border-radius:50px;font-size:.78rem;font-weight:600">${typeLabels[s.type]||s.type}</span></td>
+        <td>
+          <div class="action-btns">
+            <button class="btn-icon btn-icon-edit" onclick="editItem(${s.id})">✏️</button>
+            <button class="btn-icon btn-icon-delete" onclick="openDeleteModal(${s.id})">🗑️</button>
+          </div>
+        </td>
+      </tr>`;
+    });
+    renderPreview();
+  }
+
+  function renderPreview() {
+    const preview = document.getElementById('schedulePreview');
+    preview.innerHTML = '';
+    schedule.forEach(s => {
+      const bg = typeColors[s.type] || '#F1F5F9';
+      const fg = typeTextColors[s.type] || '#475569';
+      preview.innerHTML += `
+      <div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--gray-100)">
+        <span style="min-width:55px;font-weight:700;font-size:.95rem">${s.time}</span>
+        <span style="font-size:1.3rem">${s.icon||''}</span>
+        <span style="flex:1">${s.activity}</span>
+        <span style="background:${bg};color:${fg};padding:2px 10px;border-radius:50px;font-size:.75rem;font-weight:600">${typeLabels[s.type]||s.type}</span>
+      </div>`;
+    });
+  }
+
+  renderSchedule();
+
+  // Drag & drop
+  function dragStart(e) { dragSrc = parseInt(e.currentTarget.dataset.id); e.dataTransfer.effectAllowed='move'; }
+  function dragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect='move'; }
+  function drop(e) {
+    e.preventDefault();
+    const targetId = parseInt(e.currentTarget.dataset.id);
+    if (dragSrc === targetId) return;
+    const srcIdx = schedule.findIndex(s=>s.id===dragSrc);
+    const tgtIdx = schedule.findIndex(s=>s.id===targetId);
+    const [item] = schedule.splice(srcIdx,1);
+    schedule.splice(tgtIdx,0,item);
+    setAdminData('schedule',schedule);
+    renderSchedule();
+  }
+
+  function openAddModal() {
+    document.getElementById('schedModalTitle').textContent = 'Добавить пункт';
+    document.getElementById('editId').value = '';
+    document.getElementById('schedForm').reset();
+    document.getElementById('schedModal').classList.add('open');
+  }
+  function editItem(id) {
+    const s = schedule.find(x=>x.id===id);
+    if(!s) return;
+    document.getElementById('schedModalTitle').textContent = 'Редактировать пункт';
+    document.getElementById('editId').value = id;
+    document.getElementById('sTime').value = s.time;
+    document.getElementById('sIcon').value = s.icon||'';
+    document.getElementById('sActivity').value = s.activity;
+    document.getElementById('sType').value = s.type;
+    document.getElementById('schedModal').classList.add('open');
+  }
+  function saveItem() {
+    const id = document.getElementById('editId').value;
+    const data = {
+      id: id ? parseInt(id) : Date.now(),
+      time: document.getElementById('sTime').value.trim(),
+      icon: document.getElementById('sIcon').value.trim(),
+      activity: document.getElementById('sActivity').value.trim(),
+      type: document.getElementById('sType').value
+    };
+    if (!data.time || !data.activity) { showToast('Заполните обязательные поля','error'); return; }
+    if (id) { const i=schedule.findIndex(s=>s.id===parseInt(id)); if(i>=0) schedule[i]=data; }
+    else { schedule.push(data); }
+    setAdminData('schedule',schedule);
+    renderSchedule();
+    closeModal();
+    showToast('✅ Расписание обновлено');
+  }
+  function openDeleteModal(id) { deleteTarget=id; document.getElementById('deleteModal').classList.add('open'); }
+  function closeDeleteModal() { deleteTarget=null; document.getElementById('deleteModal').classList.remove('open'); }
+  function confirmDelete() {
+    schedule=schedule.filter(s=>s.id!==deleteTarget);
+    setAdminData('schedule',schedule);
+    renderSchedule();
+    closeDeleteModal();
+    showToast('🗑️ Пункт удалён');
+  }
+  function closeModal() { document.getElementById('schedModal').classList.remove('open'); }
+</script>
+</body>
+</html>

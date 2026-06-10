@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявки — Быстрая Кошка</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background:#F1F5F9">
+
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-logo">
+      <div class="logo-icon">🐱</div>
+      <div class="logo-text">Быстрая Кошка <small>Панель управления</small></div>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-section">Главное</div>
+      <a href="index.html">📊 Дашборд</a>
+      <a href="registrations.html" class="active">📋 Заявки</a>
+      <div class="admin-nav-section">Контент</div>
+      <a href="programs.html">🏕️ Программы</a>
+      <a href="schedule.html">📅 Расписание</a>
+      <a href="blog.html">📝 Блог</a>
+      <div class="admin-nav-section">Сайт</div>
+      <a href="../index.html" target="_blank">🌐 Открыть сайт</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>📋 Заявки на участие</h1>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-outline btn-sm" onclick="exportCSV()">📥 Экспорт CSV</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <!-- STATS -->
+      <div class="admin-stat-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="admin-stat-card"><div class="label">Всего заявок</div><div class="value" id="sTotal">—</div></div>
+        <div class="admin-stat-card"><div class="label">Ожидают ответа</div><div class="value" id="sPending" style="color:#F59E0B">—</div></div>
+        <div class="admin-stat-card"><div class="label">Подтверждены</div><div class="value" id="sConfirmed" style="color:#10B981">—</div></div>
+        <div class="admin-stat-card"><div class="label">Отменены</div><div class="value" id="sCancelled" style="color:#DC2626">—</div></div>
+      </div>
+
+      <div class="admin-table-container">
+        <div class="admin-table-header">
+          <h3>Все заявки</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input type="text" id="searchInput" class="form-control" style="width:200px;padding:8px 12px" placeholder="Поиск по имени..." oninput="filterRegs()">
+            <select id="statusFilter" class="form-control" style="width:160px;padding:8px 12px" onchange="filterRegs()">
+              <option value="">Все статусы</option>
+              <option value="pending">Ожидает</option>
+              <option value="confirmed">Подтверждена</option>
+              <option value="cancelled">Отменена</option>
+            </select>
+          </div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Контакт</th>
+                <th>Кемп</th>
+                <th>Уровень</th>
+                <th>Дата заявки</th>
+                <th>Статус</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="regsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- VIEW MODAL -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal" style="max-width:540px">
+    <div class="modal-header"><h3>Детали заявки</h3><button class="modal-close" onclick="closeView()">✕</button></div>
+    <div class="modal-body" id="viewBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" onclick="updateStatus('cancelled')" style="color:#DC2626;border-color:#DC2626">✗ Отменить</button>
+      <button class="btn btn-green btn-sm" onclick="updateStatus('confirmed')">✓ Подтвердить</button>
+      <button class="btn btn-outline" onclick="closeView()">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  initAdminData();
+  let regs = getAdminData('registrations', []);
+  let viewTarget = null;
+
+  const statusBadge = {
+    confirmed:'<span class="badge badge-green">✓ Подтверждена</span>',
+    pending:'<span class="badge badge-amber">⏳ Ожидает</span>',
+    cancelled:'<span class="badge" style="background:#FEE2E2;color:#DC2626">✗ Отменена</span>'
+  };
+
+  function updateStats() {
+    document.getElementById('sTotal').textContent = regs.length;
+    document.getElementById('sPending').textContent = regs.filter(r=>r.status==='pending').length;
+    document.getElementById('sConfirmed').textContent = regs.filter(r=>r.status==='confirmed').length;
+    document.getElementById('sCancelled').textContent = regs.filter(r=>r.status==='cancelled').length;
+  }
+
+  function renderRegs(data) {
+    const tbody = document.getElementById('regsTable');
+    tbody.innerHTML = '';
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--gray-400)">Заявок нет</td></tr>';
+      return;
+    }
+    data.forEach(r => {
+      tbody.innerHTML += `
+      <tr>
+        <td style="color:var(--gray-400);font-size:.8rem">#${r.id}</td>
+        <td><strong>${r.name||'—'}</strong></td>
+        <td style="font-size:.85rem">
+          ${r.phone ? `<div>${r.phone}</div>` : ''}
+          ${r.email ? `<div style="color:var(--gray-400)">${r.email}</div>` : ''}
+        </td>
+        <td style="font-size:.85rem;max-width:180px;white-space:normal">${(r.camp||'—').slice(0,40)}</td>
+        <td>${r.level ? `<span class="badge badge-green">${r.level}</span>` : '—'}</td>
+        <td style="font-size:.85rem">${r.date||'—'}</td>
+        <td>${statusBadge[r.status]||''}</td>
+        <td>
+          <div class="action-btns">
+            <button class="btn-icon btn-icon-edit" onclick="viewReg(${r.id})" title="Просмотр">👁️</button>
+            <button class="btn-icon" style="background:#D1FAE5;color:#065F46" onclick="quickConfirm(${r.id})" title="Подтвердить">✓</button>
+          </div>
+        </td>
+      </tr>`;
+    });
+  }
+
+  function filterRegs() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const s = document.getElementById('statusFilter').value;
+    const filtered = regs.filter(r => {
+      const mq = !q || (r.name||'').toLowerCase().includes(q) || (r.phone||'').includes(q);
+      const ms = !s || r.status === s;
+      return mq && ms;
+    });
+    renderRegs(filtered);
+  }
+
+  function viewReg(id) {
+    const r = regs.find(x => x.id === id);
+    if (!r) return;
+    viewTarget = id;
+    document.getElementById('viewBody').innerHTML = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Имя</div><strong>${r.name||'—'}</strong></div>
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Телефон</div><strong>${r.phone||'—'}</strong></div>
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Email</div><strong>${r.email||'—'}</strong></div>
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Возраст</div><strong>${r.age||'—'}</strong></div>
+        <div style="grid-column:1/-1"><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Кемп</div><strong>${r.camp||'—'}</strong></div>
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Уровень</div><strong>${r.level||'—'}</strong></div>
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Размещение</div><strong>${r.room||'—'}</strong></div>
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Статус</div>${statusBadge[r.status]||''}</div>
+        <div><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:4px">Дата заявки</div><strong>${r.date||'—'}</strong></div>
+      </div>
+      ${r.comment ? `<div style="margin-top:16px;padding:14px;background:var(--gray-50);border-radius:var(--radius)"><div style="font-size:.8rem;color:var(--gray-400);margin-bottom:6px">Комментарий</div>${r.comment}</div>` : ''}`;
+    document.getElementById('viewModal').classList.add('open');
+  }
+
+  function updateStatus(status) {
+    if (!viewTarget) return;
+    const idx = regs.findIndex(r => r.id === viewTarget);
+    if (idx >= 0) { regs[idx].status = status; setAdminData('registrations', regs); }
+    closeView(); renderRegs(regs); updateStats();
+    showToast(status==='confirmed'?'✅ Заявка подтверждена':'❌ Заявка отменена');
+  }
+
+  function quickConfirm(id) {
+    const idx = regs.findIndex(r => r.id === id);
+    if (idx >= 0) { regs[idx].status = 'confirmed'; setAdminData('registrations', regs); }
+    filterRegs(); updateStats();
+    showToast('✅ Заявка подтверждена');
+  }
+
+  function closeView() { viewTarget=null; document.getElementById('viewModal').classList.remove('open'); }
+
+  function exportCSV() {
+    const headers = ['ID','Имя','Телефон','Email','Кемп','Уровень','Размещение','Статус','Дата'];
+    const rows = regs.map(r => [r.id,r.name,r.phone,r.email,r.camp,r.level,r.room,r.status,r.date].map(v=>`"${(v||'').toString().replace(/"/g,'""')}"`));
+    const csv = [headers,...rows].map(r=>r.join(',')).join('\n');
+    const blob = new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download='registrations.csv'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('📥 CSV экспортирован');
+  }
+
+  updateStats();
+  renderRegs(regs);
+</script>
+</body>
+</html>
