@@ -49,43 +49,86 @@ const SITE_DATA = {
   locations: [
     {
       id: 1,
-      name: "Города России",
-      subtitle: "Спа-отель Теплеево Резорт",
+      name: "Россия",
+      subtitle: "Теплеево Резорт",
       region: "Московская область",
-      description: "Премиальный загородный курорт в живописном лесу Подмосковья. Современный спа-комплекс, бассейн и все условия для активного отдыха.",
+      description: "Загородный комплекс в 44 га соснового леса с озёрами и рекой. Бассейны, спа, своя пивоварня и масса активностей.",
       emoji: "🌲",
       color: "#1B4332",
-      gradient: "linear-gradient(135deg, #1B4332, #2D6A4F)"
+      gradient: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+      anchor: "russia-teplevo",
+      cover: "images/teplezeevo_otel/teplezeevo_otel_1.png"
     },
     {
       id: 2,
-      name: "Кыргызстан",
-      subtitle: "Озеро Иссык-Куль",
-      region: "Центральная Азия",
-      description: "Жемчужина Центральной Азии — высокогорное озеро с кристально чистой водой, окружённое заснеженными пиками Тянь-Шаня.",
-      emoji: "🏔️",
-      color: "#0369A1",
-      gradient: "linear-gradient(135deg, #0369A1, #0891B2)"
+      name: "Россия",
+      subtitle: "Moscow Country Club 5★",
+      region: "Московская область",
+      description: "Пятизвёздочный комплекс в Нахабино со 120 га леса и первым в России профессиональным гольф-полем на 18 лунок.",
+      emoji: "⛳",
+      color: "#1B4332",
+      gradient: "linear-gradient(135deg, #14532D, #16A34A)",
+      anchor: "russia-mcc",
+      cover: "images/Moscow_Country_Club/Moscow_Country_Club_1.jpg"
     },
     {
       id: 3,
+      name: "Россия",
+      subtitle: "Максима Парк Отель 3★",
+      region: "Московская область",
+      description: "Загородный комплекс с конным клубом Maxima Stables, 25-метровым бассейном, спа и фермерской кухней.",
+      emoji: "🐴",
+      color: "#1B4332",
+      gradient: "linear-gradient(135deg, #166534, #4D7C0F)",
+      anchor: "russia-maxima",
+      cover: "images/maksima_park_otel/maksima_park_otel_1.jpg"
+    },
+    {
+      id: 4,
+      name: "Кыргызстан",
+      subtitle: "Озеро Иссык-Куль",
+      region: "Центральная Азия",
+      description: "Крупнейшее высокогорное озеро Тянь-Шаня на высоте 1600 м — голубая прозрачная вода и биосферный заповедник ЮНЕСКО.",
+      emoji: "🏔️",
+      color: "#0369A1",
+      gradient: "linear-gradient(135deg, #0369A1, #0891B2)",
+      anchor: "kyrgyzstan",
+      cover: "images/issykkul/fastcat_issykkul_1.jpg"
+    },
+    {
+      id: 5,
       name: "Турция",
       subtitle: "Крейсер по Эгейскому морю",
       region: "Средиземноморье",
       description: "Незабываемый яхтенный круиз по бирюзовым водам Эгейского моря с заходом в живописные бухты и античные города.",
       emoji: "⛵",
       color: "#0E7490",
-      gradient: "linear-gradient(135deg, #0E7490, #06B6D4)"
+      gradient: "linear-gradient(135deg, #0E7490, #06B6D4)",
+      anchor: "turkey"
     },
     {
-      id: 4,
+      id: 6,
+      name: "Турция",
+      subtitle: "Горнолыжный курорт Эрджиес",
+      region: "Каппадокия",
+      description: "Катание на склонах вулкана Эрджиес (3917 м): 112 км трасс, 19 подъёмников и Каппадокия в 70 км.",
+      emoji: "⛷️",
+      color: "#0E7490",
+      gradient: "linear-gradient(135deg, #1E3A8A, #38BDF8)",
+      anchor: "turkey-erciyes",
+      cover: "images/turkiye/fastcat_urkiye_1.jpeg"
+    },
+    {
+      id: 7,
       name: "Италия",
       subtitle: "Озеро Комо",
       region: "Северная Италия",
-      description: "Аристократическая Ломбардия — легендарное озеро с виллами эпохи Возрождения, альпийскими пейзажами и изысканной итальянской кухней.",
+      description: "Аристократическая Ломбардия — легендарное озеро с виллами эпохи Возрождения, альпийскими пейзажами и изысканной кухней.",
       emoji: "🇮🇹",
       color: "#9D174D",
-      gradient: "linear-gradient(135deg, #9D174D, #DB2777)"
+      gradient: "linear-gradient(135deg, #9D174D, #DB2777)",
+      anchor: "italy",
+      cover: "images/como/como_1.jpeg"
     }
   ],
 

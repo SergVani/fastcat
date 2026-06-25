@@ -283,14 +283,17 @@
   // Locations grid
   const lg = document.getElementById('locationsGrid');
   SITE_DATA.locations.forEach(loc => {
+    const bg = loc.cover
+      ? `url('${loc.cover}') center/cover no-repeat`
+      : loc.gradient;
     lg.innerHTML += `
-    <div class="location-card" onclick="window.location='camps.html#${['russia','kyrgyzstan','turkey','italy'][loc.id-1]}'">
-      <div class="location-bg" style="background:${loc.gradient}"></div>
+    <div class="location-card" onclick="window.location='camps.html#${loc.anchor}'">
+      <div class="location-bg" style="background:${bg}"></div>
       <div class="location-overlay"></div>
       <div class="location-body">
         <div class="location-tag">${loc.region}</div>
-        <h3>${loc.emoji} ${loc.name}</h3>
-        <p>${loc.subtitle} — ${loc.description.slice(0,80)}...</p>
+        <h3>${loc.emoji} ${loc.name} · ${loc.subtitle}</h3>
+        <p>${loc.description}</p>
       </div>
     </div>`;
   });

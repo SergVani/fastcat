@@ -89,26 +89,89 @@
       <p>Кемпы в самых красивых уголках планеты</p>
     </div>
 
-    <!-- Russia -->
-    <div class="grid-2" style="align-items:center;gap:60px;margin-bottom:80px" id="russia">
-      <div style="background:linear-gradient(135deg,var(--green-pale),#B7E4C7);border-radius:var(--radius-lg);padding:48px;text-align:center;font-size:5rem">🌲</div>
+    <!-- Russia heading -->
+    <div id="russia" style="text-align:center;margin-bottom:40px">
+      <div class="hero-badge" style="display:inline-flex;background:rgba(27,67,50,.1);color:var(--green-dark);border-color:rgba(27,67,50,.2)">🇷🇺 Россия · Подмосковье</div>
+      <h3 style="margin-top:12px">Три загородных комплекса на выбор</h3>
+    </div>
+
+    <!-- Russia · Teplevo -->
+    <div class="grid-2" style="align-items:center;gap:60px;margin-bottom:80px" id="russia-teplevo">
       <div>
-        <div class="hero-badge" style="display:inline-flex;margin-bottom:12px;background:rgba(27,67,50,.1);color:var(--green-dark);border-color:rgba(27,67,50,.2)">🇷🇺 Россия</div>
-        <h3 style="margin-bottom:12px">Спа-отель Теплеево Резорт</h3>
-        <p style="font-size:1rem;margin-bottom:16px"><strong>Московская область</strong> — наша основная база. Живописный лесной курорт в 60 км от МКАД с полным набором инфраструктуры для спортивного отдыха.</p>
-        <p style="margin-bottom:20px">Сосновый лес, чистый воздух, беговые и лыжные трассы прямо у отеля. Современный спа-комплекс для восстановления после тренировок.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
-          <span class="badge badge-green">🏃 Бег</span>
-          <span class="badge badge-green">⛷️ Лыжи (зима)</span>
-          <span class="badge badge-green">🏋️ ОФП</span>
-          <span class="badge badge-blue">🏊 Бассейн</span>
-          <span class="badge badge-amber">♨️ СПА</span>
+        <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;margin-bottom:12px">
+          <img src="images/teplezeevo_otel/teplezeevo_otel_1.png" alt="Теплеево Резорт" style="width:100%;height:100%;object-fit:cover">
         </div>
-        <div class="gallery-grid" style="grid-template-columns:repeat(4,1fr);gap:8px">
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder">🌲<span>Лес</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder">🏨<span>Отель</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder">🏃<span>Пробежка</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder">❄️<span>Зима</span></div></div>
+        <div class="gallery-grid" style="grid-template-columns:repeat(3,1fr);gap:8px">
+          <div class="gallery-item"><img src="images/teplezeevo_otel/teplezeevo_otel_2.png" alt="Теплеево Резорт"></div>
+          <div class="gallery-item"><img src="images/teplezeevo_otel/teplezeevo_otel_3.jpg" alt="Теплеево Резорт"></div>
+          <div class="gallery-item"><img src="images/teplezeevo_otel/teplezeevo_otel_4.jpg" alt="Теплеево Резорт"></div>
+        </div>
+      </div>
+      <div>
+        <div class="hero-badge" style="display:inline-flex;margin-bottom:12px;background:rgba(27,67,50,.1);color:var(--green-dark);border-color:rgba(27,67,50,.2)">🌲 Теплеево Резорт</div>
+        <h3 style="margin-bottom:12px">Спа-отель Теплеево Резорт</h3>
+        <p style="font-size:1rem;margin-bottom:16px"><strong>Деревня Рогозинино, Новая Москва</strong> — загородный комплекс на 44 гектарах соснового леса с озёрами и рекой. Пространство природного спокойствия с удобной парковкой и развитой инфраструктурой.</p>
+        <p style="margin-bottom:20px">Крытый бассейн 25 м, детский бассейн, сауна и хаммам, спа-процедуры и тренажёрный зал. Боулинг, бильярд, теннис, прокат велосипедов, верховая езда и рыбалка. Несколько ресторанов и собственная пивоварня, детская анимация. Размещение с питомцами до 10 кг.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+          <span class="badge badge-green">🌲 44 га леса</span>
+          <span class="badge badge-blue">🏊 Бассейн 25 м</span>
+          <span class="badge badge-amber">♨️ Сауна и хаммам</span>
+          <span class="badge badge-green">🐴 Верховая езда</span>
+          <span class="badge badge-amber">🍽️ Своя пивоварня</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Russia · Moscow Country Club -->
+    <div class="grid-2" style="align-items:center;gap:60px;margin-bottom:80px" id="russia-mcc">
+      <div>
+        <div class="hero-badge" style="display:inline-flex;margin-bottom:12px;background:rgba(27,67,50,.1);color:var(--green-dark);border-color:rgba(27,67,50,.2)">⛳ Moscow Country Club · 5★</div>
+        <h3 style="margin-bottom:12px">Moscow Country Club</h3>
+        <p style="font-size:1rem;margin-bottom:16px"><strong>Нахабино, 13 км от МКАД</strong> — пятизвёздочный комплекс ГлавУпДК при МИД России на охраняемой территории свыше 120 гектаров. Коттеджи и таунхаусы в европейском стиле, в каждом — сауна, камин и мангальная зона.</p>
+        <p style="margin-bottom:20px">Первое в России профессиональное 18-луночное гольф-поле, спорткомплекс с теннисом, крытый и открытый бассейны, банный комплекс с хамамом. Рестораны «Времена года» и «Зимний сад», банкеты и свадьбы до 250 человек. Размещение с питомцами не допускается.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+          <span class="badge badge-green">⛳ Гольф 18 лунок</span>
+          <span class="badge badge-blue">🏊 Два бассейна</span>
+          <span class="badge badge-green">🎾 Теннис</span>
+          <span class="badge badge-amber">🧖 Банный комплекс</span>
+          <span class="badge badge-green">🐴 Конные прогулки</span>
+        </div>
+      </div>
+      <div>
+        <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;margin-bottom:12px">
+          <img src="images/Moscow_Country_Club/Moscow_Country_Club_1.jpg" alt="Moscow Country Club" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div class="gallery-grid" style="grid-template-columns:repeat(3,1fr);gap:8px">
+          <div class="gallery-item"><img src="images/Moscow_Country_Club/Moscow_Country_Club_4.jpg" alt="Moscow Country Club"></div>
+          <div class="gallery-item"><img src="images/Moscow_Country_Club/Moscow_Country_Club_5.jpg" alt="Moscow Country Club"></div>
+          <div class="gallery-item"><img src="images/Moscow_Country_Club/Moscow_Country_Club_7.jpg" alt="Moscow Country Club"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Russia · Maxima Park -->
+    <div class="grid-2" style="align-items:center;gap:60px;margin-bottom:80px" id="russia-maxima">
+      <div>
+        <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;margin-bottom:12px">
+          <img src="images/maksima_park_otel/maksima_park_otel_1.jpg" alt="Максима Парк Отель" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div class="gallery-grid" style="grid-template-columns:repeat(3,1fr);gap:8px">
+          <div class="gallery-item"><img src="images/maksima_park_otel/maksima_park_otel_2.jpg" alt="Максима Парк Отель"></div>
+          <div class="gallery-item"><img src="images/maksima_park_otel/maksima_park_otel_4.jpg" alt="Максима Парк Отель"></div>
+          <div class="gallery-item"><img src="images/maksima_park_otel/maksima_park_otel_6.jpg" alt="Максима Парк Отель"></div>
+        </div>
+      </div>
+      <div>
+        <div class="hero-badge" style="display:inline-flex;margin-bottom:12px;background:rgba(27,67,50,.1);color:var(--green-dark);border-color:rgba(27,67,50,.2)">🐴 Максима Парк · 3★</div>
+        <h3 style="margin-bottom:12px">Максима Парк Отель</h3>
+        <p style="font-size:1rem;margin-bottom:16px"><strong>Дмитровский район, деревня Горки Сухаревские</strong> — загородный комплекс уровня 3★ с конным клубом Maxima Stables: 5 крытых манежей, 6 открытых полей, школа верховой езды и круглосуточная ветклиника.</p>
+        <p style="margin-bottom:20px">Фитнес-центр с 25-метровым бассейном и оборудованием TechnoGym, спа-зона с русской баней, хамамом и гидромассажем. Ресторан с акцентом на фермерские продукты с собственного огорода. Детская площадка и анимация. Размещение с питомцами по согласованию.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+          <span class="badge badge-green">🐴 Конный клуб</span>
+          <span class="badge badge-blue">🏊 Бассейн 25 м</span>
+          <span class="badge badge-amber">🧖 Спа и баня</span>
+          <span class="badge badge-green">🥗 Фермерская кухня</span>
+          <span class="badge badge-green">🏋️ TechnoGym</span>
         </div>
       </div>
     </div>
@@ -118,22 +181,24 @@
       <div>
         <div class="hero-badge" style="display:inline-flex;margin-bottom:12px;background:rgba(3,105,161,.1);color:#0369A1;border-color:rgba(3,105,161,.2)">🇰🇬 Кыргызстан</div>
         <h3 style="margin-bottom:12px">Озеро Иссык-Куль</h3>
-        <p style="font-size:1rem;margin-bottom:16px"><strong>Высокогорный рай</strong> — одно из самых красивых мест в Центральной Азии. Кристально чистое горное озеро, окружённое заснеженными пиками Тянь-Шаня.</p>
-        <p style="margin-bottom:20px">Чистейший горный воздух улучшает физическую форму, а уникальная природа вдохновляет на новые достижения. Местная культура и гостеприимство делают кемп незабываемым.</p>
+        <p style="font-size:1rem;margin-bottom:16px"><strong>«Горячее озеро»</strong> — крупнейшее высокогорное озеро Кыргызстана на высоте около 1600 м, в межгорной котловине между хребтами Северного Тянь-Шаня. Площадь ~6236 км², глубина до 668 м.</p>
+        <p style="margin-bottom:20px">Вода солоноватая, голубого цвета и очень прозрачная (до 20 м летом). Озеро не замерзает даже зимой и входит во всемирную сеть биосферных заповедников ЮНЕСКО: около 21 вида рыб и тысячи зимующих птиц. Здесь развит и пляжный отдых, и активный — походы по ущельям и экскурсии к природным достопримечательностям.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
-          <span class="badge badge-blue">🏔️ Горные трейлы</span>
+          <span class="badge badge-blue">🏔️ Высота 1600 м</span>
           <span class="badge badge-green">🏊 Купание в озере</span>
-          <span class="badge badge-green">🚴 Велопрогулки</span>
-          <span class="badge badge-amber">🌅 Рассветы</span>
+          <span class="badge badge-green">🥾 Походы по ущельям</span>
+          <span class="badge badge-amber">🦢 Заповедник ЮНЕСКО</span>
         </div>
         <div class="gallery-grid" style="grid-template-columns:repeat(4,1fr);gap:8px">
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#BAE6FD,#7DD3FC)">🏔️<span>Горы</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#BAE6FD,#38BDF8)">🌊<span>Озеро</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#D1FAE5,#6EE7B7)">🏃<span>Трейл</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D)">🌅<span>Закат</span></div></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/issykkul/fastcat_issykkul_4.jpg" alt="Иссык-Куль"></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/issykkul/fastcat_issykkul_8.jpg" alt="Иссык-Куль"></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/issykkul/fastcat_issykkul_9.jpg" alt="Иссык-Куль"></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/issykkul/fastcat_issykkul_11.jpg" alt="Иссык-Куль"></div>
         </div>
       </div>
-      <div style="background:linear-gradient(135deg,#BAE6FD,#0369A1);border-radius:var(--radius-lg);padding:48px;text-align:center;font-size:5rem">🏔️</div>
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:3/4;min-height:360px">
+        <img src="images/issykkul/fastcat_issykkul_1.jpg" alt="Озеро Иссык-Куль" style="width:100%;height:100%;object-fit:cover">
+      </div>
     </div>
 
     <!-- Turkey -->
@@ -159,13 +224,40 @@
       </div>
     </div>
 
+    <!-- Turkey · Erciyes -->
+    <div class="grid-2" style="align-items:center;gap:60px;margin-bottom:80px" id="turkey-erciyes">
+      <div>
+        <div class="hero-badge" style="display:inline-flex;margin-bottom:12px;background:rgba(14,116,144,.1);color:#0E7490;border-color:rgba(14,116,144,.2)">🇹🇷 Турция · Зима</div>
+        <h3 style="margin-bottom:12px">Горнолыжный курорт Эрджиес</h3>
+        <p style="font-size:1rem;margin-bottom:16px"><strong>Плато Текир, ~25 км от Кайсери</strong> — курорт на склонах потухшего вулкана Эрджиес (3917 м), всего в 70 км от знаменитой Каппадокии с её пещерными городами и полётами на воздушных шарах.</p>
+        <p style="margin-bottom:20px">Зона катания 2200–3300 м: 41 трасса общей протяжённостью 112 км (синие, красные, чёрные) и зоны Текир, Девели и Хисарчик. 19 подъёмников, более 150 снежных пушек, средняя глубина снега ~2 м. Прокат снаряжения, школа инструкторов, рестораны турецкой кухни. Сезон — с конца ноября по апрель.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+          <span class="badge badge-blue">⛷️ 112 км трасс</span>
+          <span class="badge badge-blue">🚡 19 подъёмников</span>
+          <span class="badge badge-green">🏔️ До 3300 м</span>
+          <span class="badge badge-green">❄️ Снег ~2 м</span>
+          <span class="badge badge-amber">🎈 Каппадокия рядом</span>
+        </div>
+      </div>
+      <div>
+        <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;margin-bottom:12px">
+          <img src="images/turkiye/fastcat_urkiye_1.jpeg" alt="Курорт Эрджиес" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div class="gallery-grid" style="grid-template-columns:repeat(3,1fr);gap:8px">
+          <div class="gallery-item"><img src="images/turkiye/fastcat_urkiye_2.jpg" alt="Курорт Эрджиес"></div>
+          <div class="gallery-item"><img src="images/turkiye/fastcat_urkiye_4.jpg" alt="Курорт Эрджиес"></div>
+          <div class="gallery-item"><img src="images/turkiye/fastcat_urkiye_6.jpg" alt="Курорт Эрджиес"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Italy -->
     <div class="grid-2" style="align-items:center;gap:60px" id="italy">
       <div>
         <div class="hero-badge" style="display:inline-flex;margin-bottom:12px;background:rgba(157,23,77,.1);color:#9D174D;border-color:rgba(157,23,77,.2)">🇮🇹 Италия</div>
         <h3 style="margin-bottom:12px">Озеро Комо</h3>
-        <p style="font-size:1rem;margin-bottom:16px"><strong>Аристократическая Ломбардия</strong> — одно из красивейших мест Европы. Озеро, окружённое альпийскими пиками, виллы эпохи Возрождения, изысканная итальянская кухня.</p>
-        <p style="margin-bottom:20px">Бег вдоль набережной Комо, велопробеги по горным серпантинам, плавание в прозрачных водах озера. Культурная программа — исторические виллы, гастрономия, итальянская атмосфера.</p>
+        <p style="font-size:1rem;margin-bottom:16px"><strong>Ломбардия, ~40 км к северу от Милана</strong> — озеро у южного подножия Альп. Длина около 47 км, глубина до 410 м — одно из самых глубоких озёр Европы. Знаменитая Y-образная форма из трёх рукавов: Комо, Колико и Лекко.</p>
+        <p style="margin-bottom:20px">Горы защищают озеро от ветров, формируя мягкий средиземноморский микроклимат: виноград, оливы, кипарисы и лавры. По берегам — живописные городки Белладжо, Варенна, Менаджо и Черноббьо с роскошными виллами, воспетыми поэтами и мелькающими в кино. Бег вдоль набережной, велозаезды по серпантинам и плавание в прозрачной воде.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
           <span class="badge badge-green">🚴 Велозаезды</span>
           <span class="badge badge-blue">🏊 Плавание</span>
@@ -173,13 +265,15 @@
           <span class="badge badge-amber">🍝 Гастрономия</span>
         </div>
         <div class="gallery-grid" style="grid-template-columns:repeat(4,1fr);gap:8px">
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#FCE7F3,#F9A8D4)">🏰<span>Вилла</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#EFF6FF,#93C5FD)">🌊<span>Озеро</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#D1FAE5,#6EE7B7)">🚴<span>Велосипед</span></div></div>
-          <div class="gallery-item" style="aspect-ratio:1"><div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D)">🍝<span>Еда</span></div></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/como/como_2.jpeg" alt="Озеро Комо"></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/como/como_3.jpeg" alt="Озеро Комо"></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/como/como_4.jpeg" alt="Озеро Комо"></div>
+          <div class="gallery-item" style="aspect-ratio:1"><img src="images/como/como_6.jpeg" alt="Озеро Комо"></div>
         </div>
       </div>
-      <div style="background:linear-gradient(135deg,#FCE7F3,#9D174D);border-radius:var(--radius-lg);padding:48px;text-align:center;font-size:5rem">🇮🇹</div>
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:3/4;min-height:360px">
+        <img src="images/como/como_1.jpeg" alt="Озеро Комо" style="width:100%;height:100%;object-fit:cover">
+      </div>
     </div>
   </div>
 </section>
