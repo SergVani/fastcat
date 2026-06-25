@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Логотип ГОРИЗОНТ — Превью</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #F1F5F9; color: #1F2937; }
+
+    .page { max-width: 960px; margin: 0 auto; padding: 60px 32px; }
+
+    h1 { font-size: 13px; text-transform: uppercase; letter-spacing: 4px; color: #9CA3AF; margin-bottom: 48px; }
+
+    .section-title {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 3px;
+      color: #9CA3AF; margin-bottom: 16px; margin-top: 48px;
+    }
+
+    .logo-card {
+      border-radius: 16px; padding: 60px 48px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .on-white  { background: #FFFFFF; box-shadow: 0 2px 20px rgba(0,0,0,.06); }
+    .on-light  { background: #F8FAF5; box-shadow: 0 2px 20px rgba(0,0,0,.06); }
+    .on-dark   { background: #1B4332; }
+    .on-amber  { background: #F59E0B; }
+
+    /* Dark-mode logo: white text */
+    .logo-dark-version text { fill: #FFFFFF !important; }
+    .logo-dark-version .sub  { fill: rgba(255,255,255,.55) !important; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .sizes { display: flex; align-items: flex-end; gap: 40px; flex-wrap: wrap; padding: 48px; background: white; border-radius: 16px; box-shadow: 0 2px 20px rgba(0,0,0,.06); }
+    .size-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #9CA3AF; margin-top: 12px; text-align: center; }
+
+    .palette { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .chip {
+      border-radius: 10px; padding: 14px 20px; font-size: 12px;
+      font-weight: 600; line-height: 1.6;
+    }
+
+    .icon-only { display: flex; align-items: center; justify-content: center; }
+
+    footer { text-align: center; margin-top: 64px; font-size: 12px; color: #9CA3AF; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Горизонт — Брендбук логотипа</h1>
+
+  <!-- СВЕТЛЫЙ ФОН -->
+  <div class="section-title">На белом фоне</div>
+  <div class="logo-card on-white">
+    <img src="logo.svg" width="420" alt="Горизонт логотип">
+  </div>
+
+  <!-- СВЕТЛО-ЗЕЛЁНЫЙ ФОН -->
+  <div class="section-title">На светло-зелёном фоне</div>
+  <div class="logo-card on-light">
+    <img src="logo.svg" width="420" alt="Горизонт логотип">
+  </div>
+
+  <!-- ТЁМНЫЙ ФОН — инвертированный логотип -->
+  <div class="section-title">На тёмном фоне</div>
+  <div class="logo-card on-dark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150" width="420">
+      <defs>
+        <linearGradient id="skyD" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#2D6A4F"/>
+          <stop offset="100%" stop-color="#1B4332"/>
+        </linearGradient>
+        <clipPath id="ic2"><circle cx="75" cy="75" r="57"/></clipPath>
+        <clipPath id="ab2"><rect x="0" y="0" width="520" height="76"/></clipPath>
+      </defs>
+      <circle cx="75" cy="78" r="57" fill="#0f2a1e40"/>
+      <circle cx="75" cy="75" r="57" fill="#163a29"/>
+      <g clip-path="url(#ic2)">
+        <rect x="18" y="18" width="114" height="57" fill="url(#skyD)"/>
+        <rect x="18" y="75" width="114" height="57" fill="#0D2B1E"/>
+        <line x1="18" y1="88"  x2="132" y2="88"  stroke="#0a2218" stroke-width="1"/>
+        <line x1="18" y1="100" x2="132" y2="100" stroke="#0a2218" stroke-width="1"/>
+        <circle cx="75" cy="75" r="36" fill="#FDE68A" opacity="0.4" clip-path="url(#ab2)"/>
+        <circle cx="75" cy="75" r="23" fill="#F59E0B" clip-path="url(#ab2)"/>
+        <rect x="18" y="73" width="114" height="4" fill="#F59E0B"/>
+        <g stroke="#F59E0B" stroke-linecap="round" clip-path="url(#ab2)">
+          <line x1="75"  y1="49" x2="75"  y2="35" stroke-width="2.5"/>
+          <line x1="58"  y1="58" x2="46"  y2="46" stroke-width="2"/>
+          <line x1="92"  y1="58" x2="104" y2="46" stroke-width="2"/>
+          <line x1="52"  y1="75" x2="37"  y2="75" stroke-width="2"/>
+          <line x1="98"  y1="75" x2="113" y2="75" stroke-width="2"/>
+          <line x1="65"  y1="52" x2="58"  y2="42" stroke-width="1.5"/>
+          <line x1="85"  y1="52" x2="92"  y2="42" stroke-width="1.5"/>
+        </g>
+      </g>
+      <circle cx="75" cy="75" r="57" fill="none" stroke="#52B788" stroke-width="2"/>
+      <text x="152" y="83"
+        font-family="'Segoe UI', Arial, sans-serif"
+        font-size="52" font-weight="800" fill="#FFFFFF" letter-spacing="2">ГОРИЗОНТ</text>
+      <text x="155" y="107"
+        font-family="'Segoe UI', Arial, sans-serif"
+        font-size="12" font-weight="500" fill="rgba(255,255,255,.5)" letter-spacing="5">КЛУБ АВТОРСКИХ ТУРОВ</text>
+    </svg>
+  </div>
+
+  <!-- ЯНТАРНЫЙ ФОН -->
+  <div class="section-title">На янтарном акцентном фоне</div>
+  <div class="logo-card on-amber">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150" width="420">
+      <defs>
+        <clipPath id="ic3"><circle cx="75" cy="75" r="57"/></clipPath>
+        <clipPath id="ab3"><rect x="0" y="0" width="520" height="76"/></clipPath>
+        <linearGradient id="skyA" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FEF9EE"/>
+          <stop offset="100%" stop-color="#FEF3C7"/>
+        </linearGradient>
+      </defs>
+      <circle cx="75" cy="78" r="57" fill="#00000020"/>
+      <circle cx="75" cy="75" r="57" fill="#FFFFFF"/>
+      <g clip-path="url(#ic3)">
+        <rect x="18" y="18" width="114" height="57" fill="url(#skyA)"/>
+        <rect x="18" y="75" width="114" height="57" fill="#1B4332"/>
+        <circle cx="75" cy="75" r="36" fill="#FDE68A" opacity="0.5" clip-path="url(#ab3)"/>
+        <circle cx="75" cy="75" r="23" fill="#F59E0B" clip-path="url(#ab3)"/>
+        <rect x="18" y="73" width="114" height="4" fill="#F59E0B"/>
+        <g stroke="#F59E0B" stroke-linecap="round" clip-path="url(#ab3)">
+          <line x1="75" y1="49" x2="75" y2="35" stroke-width="2.5"/>
+          <line x1="58" y1="58" x2="46" y2="46" stroke-width="2"/>
+          <line x1="92" y1="58" x2="104" y2="46" stroke-width="2"/>
+          <line x1="52" y1="75" x2="37" y2="75" stroke-width="2"/>
+          <line x1="98" y1="75" x2="113" y2="75" stroke-width="2"/>
+        </g>
+      </g>
+      <circle cx="75" cy="75" r="57" fill="none" stroke="#1B4332" stroke-width="2.5"/>
+      <text x="152" y="83"
+        font-family="'Segoe UI', Arial, sans-serif"
+        font-size="52" font-weight="800" fill="#1B4332" letter-spacing="2">ГОРИЗОНТ</text>
+      <text x="155" y="107"
+        font-family="'Segoe UI', Arial, sans-serif"
+        font-size="12" font-weight="500" fill="#78350F" letter-spacing="5">КЛУБ АВТОРСКИХ ТУРОВ</text>
+    </svg>
+  </div>
+
+  <!-- РАЗМЕРЫ -->
+  <div class="section-title">Масштабирование</div>
+  <div class="sizes">
+    <div>
+      <img src="logo.svg" width="48" alt="icon">
+      <div class="size-label">Favicon<br>48px</div>
+    </div>
+    <div>
+      <img src="logo.svg" width="120" alt="icon">
+      <div class="size-label">Mobile<br>120px</div>
+    </div>
+    <div>
+      <img src="logo.svg" width="240" alt="logo">
+      <div class="size-label">Header<br>240px</div>
+    </div>
+    <div>
+      <img src="logo.svg" width="400" alt="logo">
+      <div class="size-label">Hero<br>400px</div>
+    </div>
+  </div>
+
+  <!-- ИКОНКА ОТДЕЛЬНО -->
+  <div class="section-title">Иконка (только знак)</div>
+  <div class="logo-card on-white" style="gap:48px">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="80">
+      <defs>
+        <linearGradient id="skyI" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#FEF3C7"/>
+        </linearGradient>
+        <clipPath id="icI"><circle cx="75" cy="75" r="57"/></clipPath>
+        <clipPath id="abI"><rect x="0" y="0" width="150" height="76"/></clipPath>
+      </defs>
+      <circle cx="75" cy="78" r="57" fill="#1B433218"/>
+      <circle cx="75" cy="75" r="57" fill="#fff"/>
+      <g clip-path="url(#icI)">
+        <rect x="18" y="18" width="114" height="57" fill="url(#skyI)"/>
+        <rect x="18" y="75" width="114" height="57" fill="#1B4332"/>
+        <circle cx="75" cy="75" r="36" fill="#FDE68A" opacity="0.5" clip-path="url(#abI)"/>
+        <circle cx="75" cy="75" r="23" fill="#F59E0B" clip-path="url(#abI)"/>
+        <rect x="18" y="73" width="114" height="4" fill="#F59E0B"/>
+        <g stroke="#F59E0B" stroke-linecap="round" clip-path="url(#abI)">
+          <line x1="75" y1="49" x2="75" y2="35" stroke-width="2.5"/>
+          <line x1="58" y1="58" x2="46" y2="46" stroke-width="2"/>
+          <line x1="92" y1="58" x2="104" y2="46" stroke-width="2"/>
+          <line x1="52" y1="75" x2="37" y2="75" stroke-width="2"/>
+          <line x1="98" y1="75" x2="113" y2="75" stroke-width="2"/>
+        </g>
+      </g>
+      <circle cx="75" cy="75" r="57" fill="none" stroke="#1B4332" stroke-width="2.5"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="120">
+      <defs>
+        <linearGradient id="skyI2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#FEF3C7"/>
+        </linearGradient>
+        <clipPath id="icI2"><circle cx="75" cy="75" r="57"/></clipPath>
+        <clipPath id="abI2"><rect x="0" y="0" width="150" height="76"/></clipPath>
+      </defs>
+      <circle cx="75" cy="78" r="57" fill="#1B433218"/>
+      <circle cx="75" cy="75" r="57" fill="#fff"/>
+      <g clip-path="url(#icI2)">
+        <rect x="18" y="18" width="114" height="57" fill="url(#skyI2)"/>
+        <rect x="18" y="75" width="114" height="57" fill="#1B4332"/>
+        <circle cx="75" cy="75" r="36" fill="#FDE68A" opacity="0.5" clip-path="url(#abI2)"/>
+        <circle cx="75" cy="75" r="23" fill="#F59E0B" clip-path="url(#abI2)"/>
+        <rect x="18" y="73" width="114" height="4" fill="#F59E0B"/>
+        <g stroke="#F59E0B" stroke-linecap="round" clip-path="url(#abI2)">
+          <line x1="75" y1="49" x2="75" y2="35" stroke-width="2.5"/>
+          <line x1="58" y1="58" x2="46" y2="46" stroke-width="2"/>
+          <line x1="92" y1="58" x2="104" y2="46" stroke-width="2"/>
+          <line x1="52" y1="75" x2="37" y2="75" stroke-width="2"/>
+          <line x1="98" y1="75" x2="113" y2="75" stroke-width="2"/>
+        </g>
+      </g>
+      <circle cx="75" cy="75" r="57" fill="none" stroke="#1B4332" stroke-width="2.5"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="160">
+      <defs>
+        <linearGradient id="skyI3" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#FEF3C7"/>
+        </linearGradient>
+        <clipPath id="icI3"><circle cx="75" cy="75" r="57"/></clipPath>
+        <clipPath id="abI3"><rect x="0" y="0" width="150" height="76"/></clipPath>
+      </defs>
+      <circle cx="75" cy="78" r="57" fill="#1B433218"/>
+      <circle cx="75" cy="75" r="57" fill="#fff"/>
+      <g clip-path="url(#icI3)">
+        <rect x="18" y="18" width="114" height="57" fill="url(#skyI3)"/>
+        <rect x="18" y="75" width="114" height="57" fill="#1B4332"/>
+        <circle cx="75" cy="75" r="36" fill="#FDE68A" opacity="0.5" clip-path="url(#abI3)"/>
+        <circle cx="75" cy="75" r="23" fill="#F59E0B" clip-path="url(#abI3)"/>
+        <rect x="18" y="73" width="114" height="4" fill="#F59E0B"/>
+        <g stroke="#F59E0B" stroke-linecap="round" clip-path="url(#abI3)">
+          <line x1="75" y1="49" x2="75" y2="35" stroke-width="2.5"/>
+          <line x1="58" y1="58" x2="46" y2="46" stroke-width="2"/>
+          <line x1="92" y1="58" x2="104" y2="46" stroke-width="2"/>
+          <line x1="52" y1="75" x2="37" y2="75" stroke-width="2"/>
+          <line x1="98" y1="75" x2="113" y2="75" stroke-width="2"/>
+        </g>
+      </g>
+      <circle cx="75" cy="75" r="57" fill="none" stroke="#1B4332" stroke-width="2.5"/>
+    </svg>
+  </div>
+
+  <!-- ПАЛИТРА -->
+  <div class="section-title">Цветовая палитра</div>
+  <div class="palette">
+    <div class="chip" style="background:#1B4332;color:#D8F3DC">
+      #1B4332<br><span style="font-weight:400;opacity:.7">Тёмный зелёный</span>
+    </div>
+    <div class="chip" style="background:#2D6A4F;color:#D8F3DC">
+      #2D6A4F<br><span style="font-weight:400;opacity:.7">Основной зелёный</span>
+    </div>
+    <div class="chip" style="background:#52B788;color:#fff">
+      #52B788<br><span style="font-weight:400;opacity:.7">Светлый зелёный</span>
+    </div>
+    <div class="chip" style="background:#F59E0B;color:#fff">
+      #F59E0B<br><span style="font-weight:400;opacity:.7">Янтарный / Солнце</span>
+    </div>
+    <div class="chip" style="background:#FDE68A;color:#78350F">
+      #FDE68A<br><span style="font-weight:400;opacity:.7">Свечение</span>
+    </div>
+    <div class="chip" style="background:#FFFFFF;color:#1B4332;border:1px solid #E5E7EB">
+      #FFFFFF<br><span style="font-weight:400;opacity:.7">Белый</span>
+    </div>
+  </div>
+
+  <footer>
+    Горизонт · Клуб авторских туров · logo.svg
+  </footer>
+
+</div>
+</body>
+</html>

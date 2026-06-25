@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Логотип v2 — Быстрая Кошка</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0F1F16; color: #E5E7EB; }
+    .page { max-width: 1000px; margin: 0 auto; padding: 60px 32px; }
+    h1 { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: #52B788; margin-bottom: 48px; }
+    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: #52B78870; margin-bottom: 16px; margin-top: 44px; }
+    .card { border-radius: 20px; padding: 56px 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .dark   { background: #0F1F16; border: 1px solid #1B4332; }
+    .mid    { background: #1B4332; }
+    .white  { background: #FFFFFF; }
+    .pale   { background: #F0FFF4; }
+
+    .sizes { display: flex; align-items: flex-end; gap: 40px; flex-wrap: wrap; padding: 48px; background: #1B4332; border-radius: 20px; }
+    .sz { text-align: center; }
+    .sz-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #52B78890; margin-top: 12px; }
+
+    .compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .ccard { border-radius: 16px; padding: 36px 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .clabel { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #52B78888; text-align: center; }
+
+    /* White version of the cat icon inline */
+    .icon-white { filter: none; }
+
+    footer { text-align: center; margin-top: 64px; font-size: 11px; color: #52B78850; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Быстрая Кошка — Логотип v2 · Прыгающий силуэт</h1>
+
+  <!-- ТЁМНЫЙ ФОН (основной) -->
+  <div class="label">Основной вариант — тёмный фон</div>
+  <div class="card dark">
+    <img src="logo-koshka2.svg" width="460" alt="Быстрая Кошка">
+  </div>
+
+  <!-- ЗЕЛЁНЫЙ ФОН -->
+  <div class="label">На тёмно-зелёном фоне</div>
+  <div class="card mid">
+    <img src="logo-koshka2.svg" width="460" alt="Быстрая Кошка">
+  </div>
+
+  <!-- БЕЛЫЙ ФОН -->
+  <div class="label">На белом фоне</div>
+  <div class="card white">
+    <img src="logo-koshka2.svg" width="460" alt="Быстрая Кошка">
+  </div>
+
+  <!-- СВЕТЛЫЙ ФОН -->
+  <div class="label">На светло-зелёном фоне</div>
+  <div class="card pale">
+    <img src="logo-koshka2.svg" width="460" alt="Быстрая Кошка">
+  </div>
+
+  <!-- МАСШТАБЫ -->
+  <div class="label">Масштабирование</div>
+  <div class="sizes">
+    <div class="sz">
+      <img src="logo-koshka2.svg" width="48">
+      <div class="sz-label">48px</div>
+    </div>
+    <div class="sz">
+      <img src="logo-koshka2.svg" width="100">
+      <div class="sz-label">100px</div>
+    </div>
+    <div class="sz">
+      <img src="logo-koshka2.svg" width="200">
+      <div class="sz-label">200px</div>
+    </div>
+    <div class="sz">
+      <img src="logo-koshka2.svg" width="380">
+      <div class="sz-label">380px</div>
+    </div>
+  </div>
+
+  <!-- СРАВНЕНИЕ ТРЁХ ВАРИАНТОВ -->
+  <div class="label">Все три варианта рядом</div>
+  <div class="compare">
+    <div class="ccard mid">
+      <img src="logo-koshka2.svg" width="220">
+      <div class="clabel">v2 · Прыгающая кошка<br><span style="color:#52B788;font-weight:700">Новый</span></div>
+    </div>
+    <div class="ccard mid">
+      <img src="logo-koshka.svg" width="220">
+      <div class="clabel">v1 · Мордочка кошки</div>
+    </div>
+    <div class="ccard mid">
+      <img src="logo.svg" width="220">
+      <div class="clabel">v3 · Горизонт</div>
+    </div>
+  </div>
+
+  <footer>
+    Быстрая Кошка · Клуб авторских туров · logo-koshka2.svg
+  </footer>
+
+</div>
+</body>
+</html>

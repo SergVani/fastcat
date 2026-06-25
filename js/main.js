@@ -56,11 +56,7 @@ function renderHeader(currentPage) {
     <div class="container">
       <nav class="nav">
         <a href="index.html" class="nav-logo">
-          <div class="nav-logo-icon">🐱</div>
-          <div class="nav-logo-text">
-            <span class="logo-name">Быстрая Кошка</span>
-            <span class="logo-sub">Авторские туры</span>
-          </div>
+          <img src="images/logo-koshka-dark.svg" alt="Быстрая Кошка — клуб авторских туров" class="nav-logo-img">
         </a>
         <div class="nav-links">${links}</div>
         <div class="nav-cta">
@@ -87,11 +83,7 @@ function renderFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
-            <div class="footer-logo-icon">🐱</div>
-            <div>
-              <div class="footer-brand-name">Быстрая Кошка</div>
-              <div class="footer-brand-sub">Авторские туры</div>
-            </div>
+            <img src="images/logo-koshka-dark.svg" alt="Быстрая Кошка — клуб авторских туров" class="footer-logo-img">
           </div>
           <p>Спортивно-развлекательные лагеря для взрослых. Приключения, тренировки, новые друзья и незабываемые впечатления.</p>
           <div class="footer-social">

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150" role="img" aria-label="Горизонт — клуб авторских туров">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="100%" stop-color="#FEF3C7"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <clipPath id="iconClip">
+      <circle cx="75" cy="75" r="57"/>
+    </clipPath>
+    <clipPath id="aboveHorizon">
+      <rect x="0" y="0" width="520" height="76"/>
+    </clipPath>
+  </defs>
+
+  <!-- Icon shadow -->
+  <circle cx="75" cy="78" r="57" fill="#1B433220"/>
+
+  <!-- Icon white background -->
+  <circle cx="75" cy="75" r="57" fill="#FFFFFF"/>
+
+  <!-- Icon content clipped to circle -->
+  <g clip-path="url(#iconClip)">
+
+    <!-- Sky gradient -->
+    <rect x="18" y="18" width="114" height="57" fill="url(#skyGrad)"/>
+
+    <!-- Ground -->
+    <rect x="18" y="75" width="114" height="57" fill="#1B4332"/>
+
+    <!-- Subtle ground texture lines -->
+    <line x1="18" y1="88"  x2="132" y2="88"  stroke="#163a29" stroke-width="1"/>
+    <line x1="18" y1="100" x2="132" y2="100" stroke="#163a29" stroke-width="1"/>
+
+    <!-- Sun glow -->
+    <circle cx="75" cy="75" r="36" fill="#FDE68A" opacity="0.5" clip-path="url(#aboveHorizon)"/>
+
+    <!-- Sun body (top semicircle) -->
+    <circle cx="75" cy="75" r="23" fill="url(#sunGrad)" clip-path="url(#aboveHorizon)"/>
+
+    <!-- Horizon bar -->
+    <rect x="18" y="73" width="114" height="4" fill="#F59E0B"/>
+
+    <!-- Sun rays -->
+    <g stroke="#F59E0B" stroke-linecap="round" clip-path="url(#aboveHorizon)">
+      <!-- Top -->
+      <line x1="75"  y1="49" x2="75"  y2="35" stroke-width="2.5"/>
+      <!-- Upper-left -->
+      <line x1="58"  y1="58" x2="46"  y2="46" stroke-width="2"/>
+      <!-- Upper-right -->
+      <line x1="92"  y1="58" x2="104" y2="46" stroke-width="2"/>
+      <!-- Left -->
+      <line x1="52"  y1="75" x2="37"  y2="75" stroke-width="2"/>
+      <!-- Right -->
+      <line x1="98"  y1="75" x2="113" y2="75" stroke-width="2"/>
+      <!-- Upper-left 2 -->
+      <line x1="65"  y1="52" x2="58"  y2="42" stroke-width="1.5"/>
+      <!-- Upper-right 2 -->
+      <line x1="85"  y1="52" x2="92"  y2="42" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- Circle border -->
+  <circle cx="75" cy="75" r="57" fill="none" stroke="#1B4332" stroke-width="2.5"/>
+
+  <!-- Wordmark: ГОРИЗОНТ -->
+  <text
+    x="152" y="83"
+    font-family="'Segoe UI', 'Arial', Helvetica, sans-serif"
+    font-size="52"
+    font-weight="800"
+    fill="#1B4332"
+    letter-spacing="2">ГОРИЗОНТ</text>
+
+  <!-- Tagline -->
+  <text
+    x="155" y="107"
+    font-family="'Segoe UI', 'Arial', Helvetica, sans-serif"
+    font-size="12"
+    font-weight="500"
+    fill="#9CA3AF"
+    letter-spacing="5">КЛУБ АВТОРСКИХ ТУРОВ</text>
+</svg>

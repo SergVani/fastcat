@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 кошки — новые варианты</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0B0F19; color: #E5E7EB; }
+    .page { max-width: 1020px; margin: 0 auto; padding: 60px 32px; }
+    h1 { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: #52B788; margin-bottom: 60px; text-align: center; }
+    .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 60px; }
+    .cat-block { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .cat-label { font-size: 14px; font-weight: 700; color: #F0FDF4; }
+    .cat-desc  { font-size: 12px; color: #4B5563; line-height: 1.6; text-align: center; max-width: 210px; }
+    .divider { border: none; border-top: 1px solid #1F2937; margin: 0 0 28px; }
+    .section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 4px; color: #52B78845; margin-bottom: 16px; }
+    .logos { display: flex; flex-direction: column; gap: 12px; }
+    .logo-card { background: #111827; border-radius: 16px; padding: 40px 48px; display: flex; align-items: center; justify-content: center; }
+    footer { text-align: center; margin-top: 56px; font-size: 11px; color: #52B78828; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>3 варианта — разные позы и ракурсы</h1>
+
+  <!-- ════════ LARGE ICONS ════════ -->
+  <div class="cats">
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         КОТ 1: АНФАС — морда в лоб, большие глаза
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="cat-block">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="240" height="240">
+        <defs><clipPath id="ca"><circle cx="100" cy="100" r="88"/></clipPath></defs>
+
+        <!-- dark bg -->
+        <circle cx="100" cy="100" r="90" fill="#111827"/>
+
+        <!-- cat face (green) -->
+        <g fill="#52B788" clip-path="url(#ca)">
+          <!-- main face circle -->
+          <circle cx="100" cy="110" r="76"/>
+
+          <!-- left ear (triangle) -->
+          <polygon points="44,68  52,22  82,56"/>
+          <!-- right ear (triangle) -->
+          <polygon points="156,68  148,22  118,56"/>
+
+          <!-- inner ear recess -->
+          <polygon points="50,66  56,30  78,56" fill="#1B4332"/>
+          <polygon points="150,66  144,30  122,56" fill="#1B4332"/>
+        </g>
+
+        <!-- large almond eyes -->
+        <ellipse cx="72"  cy="96" rx="22" ry="13" fill="#111827" clip-path="url(#ca)"/>
+        <ellipse cx="128" cy="96" rx="22" ry="13" fill="#111827" clip-path="url(#ca)"/>
+
+        <!-- vertical slit pupils (amber) -->
+        <ellipse cx="72"  cy="96" rx="7" ry="12" fill="#D97706" clip-path="url(#ca)"/>
+        <ellipse cx="128" cy="96" rx="7" ry="12" fill="#D97706" clip-path="url(#ca)"/>
+
+        <!-- nose -->
+        <polygon points="93,124 107,124 100,134" fill="#111827" clip-path="url(#ca)"/>
+
+        <!-- ring -->
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#52B788" stroke-width="3"/>
+      </svg>
+      <div class="cat-label">1 · Анфас</div>
+      <div class="cat-desc">Морда в лоб. Большие миндалевидные глаза, янтарные зрачки, остроугольные уши.</div>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         КОТ 2: СИДЯЩИЙ — в профиль, хвост вверх
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="cat-block">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="240" height="240">
+        <defs><clipPath id="cb"><circle cx="100" cy="100" r="88"/></clipPath></defs>
+
+        <circle cx="100" cy="100" r="90" fill="#111827"/>
+
+        <g fill="#52B788" clip-path="url(#cb)">
+          <!-- tall upright body -->
+          <ellipse cx="92" cy="124" rx="34" ry="52"/>
+          <!-- rounded haunch (right) -->
+          <ellipse cx="116" cy="136" rx="26" ry="22"/>
+          <!-- head (upper-left) -->
+          <circle cx="62" cy="58" r="32"/>
+          <!-- neck bridge -->
+          <ellipse cx="78" cy="90" rx="28" ry="26"/>
+
+          <!-- ears (triangles, left = back, right = front) -->
+          <polygon points="42,66  44,28  68,58"/>
+          <polygon points="62,60  70,22  90,54"/>
+
+          <!-- front legs -->
+          <ellipse cx="66" cy="158" rx="12" ry="26"/>
+          <ellipse cx="86" cy="162" rx="12" ry="24" transform="rotate(5,86,162)"/>
+        </g>
+
+        <!-- tail curving up the right side -->
+        <path d="M 116,118 C 140,96 150,68 138,44
+                 C 135,38 130,40 132,46
+                 C 142,70 132,98 114,116 Z"
+              fill="#52B788" clip-path="url(#cb)"/>
+
+        <!-- eyes on front side of head -->
+        <circle cx="52" cy="56" r="7" fill="#111827" clip-path="url(#cb)"/>
+        <circle cx="70" cy="52" r="7" fill="#111827" clip-path="url(#cb)"/>
+
+        <!-- ring -->
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#52B788" stroke-width="3"/>
+      </svg>
+      <div class="cat-label">2 · Сидящая</div>
+      <div class="cat-desc">Профиль, поза сидя. Хвост вертикально вверх. Спокойный, благородный силуэт.</div>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         КОТ 3: ГАЛОП — все 4 лапы в воздухе
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="cat-block">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="240" height="240">
+        <defs><clipPath id="cc"><circle cx="100" cy="100" r="88"/></clipPath></defs>
+
+        <circle cx="100" cy="100" r="90" fill="#111827"/>
+
+        <g fill="#52B788" clip-path="url(#cc)">
+          <!-- ultra-elongated body -->
+          <ellipse cx="100" cy="98" rx="64" ry="17"/>
+
+          <!-- head (front, left side) -->
+          <circle cx="32" cy="82" r="22"/>
+          <!-- neck -->
+          <ellipse cx="54" cy="90" rx="22" ry="17"/>
+          <!-- rump (right) -->
+          <ellipse cx="162" cy="92" rx="18" ry="16"/>
+
+          <!-- small streamlined ears -->
+          <polygon points="20,78  24,52  42,74"/>
+          <polygon points="36,76  44,50  58,70"/>
+
+          <!-- front legs: angled forward-down (left) -->
+          <ellipse cx="34" cy="114" rx="9" ry="24" transform="rotate(-24,34,114)"/>
+          <ellipse cx="48" cy="118" rx="9" ry="22" transform="rotate(-14,48,118)"/>
+
+          <!-- back legs: kicking upper-right -->
+          <ellipse cx="156" cy="80" rx="9" ry="24" transform="rotate(34,156,80)"/>
+          <ellipse cx="164" cy="70" rx="8" ry="20" transform="rotate(46,164,70)"/>
+        </g>
+
+        <!-- tail curving upward from rump -->
+        <path d="M 172,100 C 188,80 192,52 178,32
+                 C 176,28 172,28 173,34
+                 C 184,54 180,82 168,98 Z"
+              fill="#52B788" clip-path="url(#cc)"/>
+
+        <!-- eyes (small, side profile) -->
+        <circle cx="25" cy="80" r="5.5" fill="#111827" clip-path="url(#cc)"/>
+        <circle cx="38" cy="76" r="5.5" fill="#111827" clip-path="url(#cc)"/>
+
+        <!-- ring -->
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#52B788" stroke-width="3"/>
+      </svg>
+      <div class="cat-label">3 · Галоп</div>
+      <div class="cat-desc">Полный прыжок — тело горизонтально вытянуто, все 4 лапы в воздухе одновременно.</div>
+    </div>
+
+  </div><!-- /cats -->
+
+  <!-- ════════ FULL LOGOS ════════ -->
+  <hr class="divider">
+  <div class="section-label">Полные логотипы с текстом</div>
+  <div class="logos">
+
+    <!-- LOGO 1: FACE -->
+    <div class="logo-card">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 150" width="530">
+        <defs><clipPath id="la"><circle cx="75" cy="75" r="56"/></clipPath></defs>
+        <circle cx="75" cy="75" r="57" fill="#111827"/>
+        <g fill="#52B788" clip-path="url(#la)">
+          <circle cx="75" cy="82" r="55"/>
+          <polygon points="33,51  39,16  62,42"/>
+          <polygon points="117,51  111,16  88,42"/>
+          <polygon points="38,49  43,22  59,43" fill="#1B4332"/>
+          <polygon points="112,49  107,22  91,43" fill="#1B4332"/>
+        </g>
+        <ellipse cx="54"  cy="72" rx="16" ry="10" fill="#111827" clip-path="url(#la)"/>
+        <ellipse cx="96"  cy="72" rx="16" ry="10" fill="#111827" clip-path="url(#la)"/>
+        <ellipse cx="54"  cy="72" rx="5"  ry="9"  fill="#D97706" clip-path="url(#la)"/>
+        <ellipse cx="96"  cy="72" rx="5"  ry="9"  fill="#D97706" clip-path="url(#la)"/>
+        <polygon points="69,92 81,92 75,100" fill="#111827" clip-path="url(#la)"/>
+        <circle cx="75" cy="75" r="57" fill="none" stroke="#52B788" stroke-width="2.5"/>
+        <text x="155" y="56"  font-family="'Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#52B788" letter-spacing="6">БЫСТРАЯ</text>
+        <text x="150" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="65" font-weight="900" fill="#1B4332">КОШКА</text>
+        <text x="155" y="128" font-family="'Segoe UI',Arial,sans-serif" font-size="11" fill="#6B7280" letter-spacing="3.5">КЛУБ АВТОРСКИХ ТУРОВ</text>
+      </svg>
+    </div>
+
+    <!-- LOGO 2: SITTING -->
+    <div class="logo-card">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 150" width="530">
+        <defs><clipPath id="lb"><circle cx="75" cy="75" r="56"/></clipPath></defs>
+        <circle cx="75" cy="75" r="57" fill="#111827"/>
+        <g fill="#52B788" clip-path="url(#lb)">
+          <ellipse cx="69" cy="93" rx="26" ry="40"/>
+          <ellipse cx="87" cy="102" rx="20" ry="17"/>
+          <circle  cx="46" cy="43" r="24"/>
+          <ellipse cx="58" cy="67" rx="21" ry="20"/>
+          <polygon points="31,50  33,21  51,44"/>
+          <polygon points="46,45  53,16  67,40"/>
+          <ellipse cx="49" cy="119" rx="9" ry="20"/>
+          <ellipse cx="64" cy="122" rx="9" ry="18" transform="rotate(5,64,122)"/>
+        </g>
+        <path d="M 87,89 C 106,72 113,51 104,33
+                 C 101,29 97,30 99,35
+                 C 106,53 99,73 86,87 Z"
+              fill="#52B788" clip-path="url(#lb)"/>
+        <circle cx="38" cy="42" r="5" fill="#111827" clip-path="url(#lb)"/>
+        <circle cx="52" cy="39" r="5" fill="#111827" clip-path="url(#lb)"/>
+        <circle cx="75" cy="75" r="57" fill="none" stroke="#52B788" stroke-width="2.5"/>
+        <text x="155" y="56"  font-family="'Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#52B788" letter-spacing="6">БЫСТРАЯ</text>
+        <text x="150" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="65" font-weight="900" fill="#1B4332">КОШКА</text>
+        <text x="155" y="128" font-family="'Segoe UI',Arial,sans-serif" font-size="11" fill="#6B7280" letter-spacing="3.5">КЛУБ АВТОРСКИХ ТУРОВ</text>
+      </svg>
+    </div>
+
+    <!-- LOGO 3: GALLOP -->
+    <div class="logo-card">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 150" width="530">
+        <defs><clipPath id="lc"><circle cx="75" cy="75" r="56"/></clipPath></defs>
+        <circle cx="75" cy="75" r="57" fill="#111827"/>
+        <g fill="#52B788" clip-path="url(#lc)">
+          <ellipse cx="75" cy="73" rx="48" ry="13"/>
+          <circle  cx="24" cy="62" r="16"/>
+          <ellipse cx="40" cy="68" rx="17" ry="13"/>
+          <ellipse cx="122" cy="69" rx="14" ry="12"/>
+          <polygon points="15,58  18,38  31,55"/>
+          <polygon points="27,57  33,37  44,53"/>
+          <ellipse cx="25" cy="86" rx="7" ry="18" transform="rotate(-24,25,86)"/>
+          <ellipse cx="36" cy="89" rx="7" ry="16" transform="rotate(-14,36,89)"/>
+          <ellipse cx="117" cy="60" rx="7" ry="18" transform="rotate(34,117,60)"/>
+          <ellipse cx="123" cy="53" rx="6" ry="15" transform="rotate(46,123,53)"/>
+        </g>
+        <path d="M 129,75 C 141,60 144,39 134,24
+                 C 132,21 129,21 130,26
+                 C 138,41 135,62 127,73 Z"
+              fill="#52B788" clip-path="url(#lc)"/>
+        <circle cx="18" cy="60" r="4" fill="#111827" clip-path="url(#lc)"/>
+        <circle cx="28" cy="57" r="4" fill="#111827" clip-path="url(#lc)"/>
+        <circle cx="75" cy="75" r="57" fill="none" stroke="#52B788" stroke-width="2.5"/>
+        <text x="155" y="56"  font-family="'Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#52B788" letter-spacing="6">БЫСТРАЯ</text>
+        <text x="150" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="65" font-weight="900" fill="#1B4332">КОШКА</text>
+        <text x="155" y="128" font-family="'Segoe UI',Arial,sans-serif" font-size="11" fill="#6B7280" letter-spacing="3.5">КЛУБ АВТОРСКИХ ТУРОВ</text>
+      </svg>
+    </div>
+
+  </div>
+
+  <footer>Быстрая Кошка · Клуб авторских туров</footer>
+</div>
+</body>
+</html>

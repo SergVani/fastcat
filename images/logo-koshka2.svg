@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 150" role="img" aria-label="Быстрая Кошка — авторские туры">
+  <defs>
+    <clipPath id="rc">
+      <circle cx="75" cy="75" r="56"/>
+    </clipPath>
+  </defs>
+
+  <!-- ===== ICON: dark circle ===== -->
+  <circle cx="75" cy="75" r="57" fill="#152B1F"/>
+
+  <!-- ===== CAT SILHOUETTE: all amber, shapes merge into one blob ===== -->
+  <g fill="#52B788" clip-path="url(#rc)">
+
+    <!-- BODY (main torso, horizontal) -->
+    <ellipse cx="84" cy="80" rx="29" ry="16"/>
+
+    <!-- HEAD (left side, slightly up) -->
+    <circle cx="49" cy="64" r="19"/>
+
+    <!-- NECK (connects head to body) -->
+    <ellipse cx="67" cy="72" rx="15" ry="13"/>
+
+    <!-- LEFT EAR (small circle overlapping head) -->
+    <circle cx="38" cy="49" r="10"/>
+
+    <!-- RIGHT EAR -->
+    <circle cx="55" cy="46" r="10"/>
+
+    <!-- FRONT LEFT LEG (hanging down-left) -->
+    <ellipse cx="42" cy="97" rx="8" ry="18"/>
+
+    <!-- FRONT RIGHT LEG (slightly right, slight tilt) -->
+    <ellipse cx="57" cy="100" rx="8" ry="17" transform="rotate(10,57,100)"/>
+
+    <!-- BACK LEFT LEG (kicking up-right) -->
+    <ellipse cx="106" cy="62" rx="7" ry="17" transform="rotate(-38,106,62)"/>
+
+    <!-- BACK RIGHT LEG -->
+    <ellipse cx="114" cy="54" rx="7" ry="15" transform="rotate(-48,114,54)"/>
+
+  </g>
+
+  <!-- TAIL (thick curved stroke, same green) -->
+  <path d="M 114,82 C 128,66 132,46 120,32"
+        stroke="#52B788" stroke-width="11" fill="none"
+        stroke-linecap="round" clip-path="url(#rc)"/>
+
+  <!-- EYES (dark, drawn on top of head) -->
+  <circle cx="43" cy="63" r="5" fill="#152B1F" clip-path="url(#rc)"/>
+  <circle cx="57" cy="60" r="5" fill="#152B1F" clip-path="url(#rc)"/>
+
+  <!-- ===== CIRCLE RING ===== -->
+  <circle cx="75" cy="75" r="57" fill="none" stroke="#52B788" stroke-width="2.5"/>
+
+  <!-- ===== TEXT ===== -->
+
+  <!-- "БЫСТРАЯ": small, light green, letter-spaced -->
+  <text
+    x="155" y="56"
+    font-family="'Segoe UI', Arial, Helvetica, sans-serif"
+    font-size="18" font-weight="600"
+    fill="#52B788" letter-spacing="6">БЫСТРАЯ</text>
+
+  <!-- "КОШКА": large, bold, dark green -->
+  <text
+    x="150" y="108"
+    font-family="'Segoe UI', Arial, Helvetica, sans-serif"
+    font-size="65" font-weight="900"
+    fill="#1B4332" letter-spacing="0">КОШКА</text>
+
+  <!-- Tagline -->
+  <text
+    x="155" y="127"
+    font-family="'Segoe UI', Arial, Helvetica, sans-serif"
+    font-size="11" font-weight="500"
+    fill="#9CA3AF" letter-spacing="3.5">КЛУБ АВТОРСКИХ ТУРОВ</text>
+
+</svg>
