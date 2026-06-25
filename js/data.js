@@ -129,6 +129,18 @@ const SITE_DATA = {
       gradient: "linear-gradient(135deg, #9D174D, #DB2777)",
       anchor: "italy",
       cover: "images/como/como_1.jpeg"
+    },
+    {
+      id: 8,
+      name: "Испания",
+      subtitle: "Остров Тенерифе",
+      region: "Канарские острова",
+      description: "«Остров вечной весны» в Атлантике с вулканом Тейде (3718 м), чёрными и золотыми пляжами и тёплым климатом круглый год.",
+      emoji: "🌋",
+      color: "#B45309",
+      gradient: "linear-gradient(135deg, #B45309, #F59E0B)",
+      anchor: "tenerife",
+      cover: "images/tenerife/tenerife_1.jpg"
     }
   ],
 
